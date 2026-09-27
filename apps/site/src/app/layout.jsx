@@ -5,7 +5,7 @@ import './layout.css'
 
 /**
  * Root layout component for the entire site
- * 
+ *
  * @param {Object} props
  * @param {React.ReactNode} props.children
  */
@@ -22,9 +22,17 @@ export default function RootLayout({ children }) {
                   <span className="logo-text">CSS-Only</span>
                 </a>
                 <ul className="nav-links">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/features/view-transitions">Features</a></li>
-                  <li><a href="https://github.com" target="_blank" rel="noopener">Source</a></li>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                  <li>
+                    <a href="/features/view-transitions">Features</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com" target="_blank" rel="noopener">
+                      Source
+                    </a>
+                  </li>
                 </ul>
               </nav>
             </div>
@@ -35,7 +43,10 @@ export default function RootLayout({ children }) {
           <footer className="site-footer">
             <div className="container">
               <p className="footer-text">
-                Built by <a href="https://github.com" target="_blank" rel="noopener">Yehuda Menahem</a>
+                Built by{' '}
+                <a href="https://github.com" target="_blank" rel="noopener">
+                  Yehuda Menahem
+                </a>
               </p>
             </div>
           </footer>
@@ -47,5 +58,6 @@ export default function RootLayout({ children }) {
 
 export const metadata = {
   title: 'CSS-Only Showcase',
-  description: 'Modern CSS replacing JavaScript in React components: measured trade-offs and CSS-only React components',
+  description:
+    'Modern CSS replacing JavaScript in React components: measured trade-offs and CSS-only React components',
 }

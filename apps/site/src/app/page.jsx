@@ -52,7 +52,7 @@ export default function HomePage() {
     {
       id: 'sibling-functions',
       title: 'Sibling Functions',
-      before: 'style={{\'--i\': index}}',
+      before: "style={{'--i': index}}",
       after: 'sibling-index()',
       href: '/features/sibling-functions',
     },
@@ -74,12 +74,16 @@ export default function HomePage() {
               frontend developers at React-first teams.
             </p>
             <div className="hero-actions">
-              <Modal id="demo-modal" trigger="Try a CSS-Only Modal" triggerClassName="btn btn-primary">
+              <Modal
+                id="demo-modal"
+                trigger="Try a CSS-Only Modal"
+                triggerClassName="btn btn-primary"
+              >
                 <h2>This modal uses zero JavaScript</h2>
                 <p style={{ marginTop: 'var(--space-sm)', color: 'var(--color-text-dim)' }}>
                   It&apos;s powered by <code>commandfor</code> + <code>command</code> attributes and{' '}
-                  <code>&lt;dialog closedby&gt;</code>. No useState, no event handlers, no
-                  &quot;use client&quot;.
+                  <code>&lt;dialog closedby&gt;</code>. No useState, no event handlers, no &quot;use
+                  client&quot;.
                 </p>
                 <p style={{ marginTop: 'var(--space-sm)', color: 'var(--color-text-dim)' }}>
                   This component is a React Server Component. Close with the × button or click
@@ -120,8 +124,8 @@ export default function HomePage() {
           <h2 className="pitch-title">For React teams shipping to real users</h2>
           <div className="pitch-content stack-md">
             <p>
-              You don&apos;t need to rewrite your app. When the performance trade-off is worth it, swap
-              individual components: one <code>&lt;Modal&gt;</code>, one carousel, one tooltip.
+              You don&apos;t need to rewrite your app. When the performance trade-off is worth it,
+              swap individual components: one <code>&lt;Modal&gt;</code>, one carousel, one tooltip.
             </p>
             <p>
               Each feature page shows measured bundle size, main-thread time, and Interaction to

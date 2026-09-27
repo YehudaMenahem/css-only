@@ -41,11 +41,7 @@ import 'css-only-kit/Modal.css'
 
 export default function MyPage() {
   return (
-    <Modal
-      id="example-modal"
-      trigger="Open Modal"
-      triggerClassName="my-button"
-    >
+    <Modal id="example-modal" trigger="Open Modal" triggerClassName="my-button">
       <h2>Modal Title</h2>
       <p>Modal content goes here.</p>
     </Modal>
@@ -142,8 +138,8 @@ packages/kit/
 Import the component and its styles separately:
 
 ```js
-import { Modal } from 'css-only-kit'      // Component
-import 'css-only-kit/Modal.css'            // Styles
+import { Modal } from 'css-only-kit' // Component
+import 'css-only-kit/Modal.css' // Styles
 ```
 
 ## Theming

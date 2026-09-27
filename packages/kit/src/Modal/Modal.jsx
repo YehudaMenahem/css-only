@@ -1,6 +1,6 @@
 /**
  * Modal component using CSS-only behavior via invoker commands and dialog.
- * 
+ *
  * @param {Object} props - Component props
  * @param {string} props.id - Required unique ID for the dialog element
  * @param {React.ReactNode} props.trigger - Button content for opening the modal
@@ -9,20 +9,20 @@
  * @param {string} [props.triggerClassName] - Additional CSS class for the trigger button
  * @param {Object} [props.triggerProps] - Additional props for the trigger button
  * @returns {JSX.Element}
- * 
+ *
  * @example
  * <Modal id="example-modal" trigger="Open Modal">
  *   <h2>Modal Title</h2>
  *   <p>Modal content goes here</p>
  * </Modal>
  */
-export function Modal({ 
-  id, 
-  trigger, 
-  children, 
+export function Modal({
+  id,
+  trigger,
+  children,
   className = '',
   triggerClassName = '',
-  triggerProps = {}
+  triggerProps = {},
 }) {
   if (!id) {
     throw new Error('Modal requires an id prop')
@@ -48,9 +48,7 @@ export function Modal({
         // @ts-ignore - closedby is a newer HTML attribute not yet in React types
         closedby="any"
       >
-        <div className="modal-content">
-          {children}
-        </div>
+        <div className="modal-content">{children}</div>
         <button
           type="button"
           // @ts-ignore

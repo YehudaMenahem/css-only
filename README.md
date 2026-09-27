@@ -11,11 +11,13 @@ Each feature demonstrates a common React pattern that relies on JavaScript libra
 ## Tech Stack
 
 ### Architecture
+
 - **pnpm workspace monorepo** with two packages:
   - `apps/site` — Next.js showcase site (App Router)
   - `packages/kit` — CSS-only React component library
 
 ### Site (`apps/site`)
+
 - **Next.js 14** with App Router
 - **Plain JavaScript** (.jsx/.js) with JSDoc annotations (TypeScript migration planned)
 - **Vanilla CSS** with native nesting, cascade layers (@layer), and custom properties
@@ -25,6 +27,7 @@ Each feature demonstrates a common React pattern that relies on JavaScript libra
 - **ESLint + Prettier + Stylelint** with browser-support linting
 
 ### Component Kit (`packages/kit`)
+
 - **React components** with CSS-only behavior (no useState, useEffect, or event handlers)
 - **Compatible with React Server Components** (no "use client" directive needed)
 - **Per-component CSS** shipped in cascade layers (kit.tokens, kit.base, kit.components)
@@ -33,6 +36,7 @@ Each feature demonstrates a common React pattern that relies on JavaScript libra
 - **npm-ready** exports for per-component imports (e.g., `import { Modal } from 'css-only-kit'` + `import 'css-only-kit/Modal.css'`)
 
 ### Tooling
+
 - **browserslist** configuration targeting modern browsers (last 2 versions)
 - **Stylelint** with `stylelint-no-unsupported-browser-features` plugin
 - **GitHub Actions** CI workflow (lint, build, test)
@@ -85,6 +89,7 @@ The site showcases seven CSS-only replacements for common JavaScript libraries:
 7. **Sibling Functions** — `sibling-index()` / `sibling-count()` vs. inline `style={{'--i': index}}`
 
 Each feature page includes:
+
 - Live before/after demos
 - Code comparisons
 - Measured costs (bundle size, INP)
@@ -176,11 +181,13 @@ The Modal component uses HTML's `commandfor`/`command` attributes and `<dialog c
 ## Design Philosophy
 
 ### Visual Direction
+
 - **Dark, editorial, and edgy** — big variable display type, one bold accent color (#ff3366)
 - **Generous negative space** with subtle grain texture
 - **Minimal and tasteful** — understated branding (small "0 KB JS" badge, footer credit line)
 
 ### Technical Principles
+
 - **CSS-only behavior** — components have no JavaScript state, effects, or event handlers
 - **React Server Component compatible** — no "use client" directive needed
 - **Cascade layers** — all kit styles shipped in @layer for easy theming and overrides

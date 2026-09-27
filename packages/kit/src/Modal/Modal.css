@@ -70,7 +70,9 @@
     align-items: center;
     justify-content: center;
     border-radius: 0.25rem;
-    transition: background-color 0.2s, color 0.2s;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
   }
 
   .modal-close:hover {

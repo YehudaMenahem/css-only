@@ -5,9 +5,7 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
 
-const cssFiles = [
-  { src: 'src/Modal/Modal.css', dest: 'dist/Modal.css' },
-]
+const cssFiles = [{ src: 'src/Modal/Modal.css', dest: 'dist/Modal.css' }]
 
 cssFiles.forEach(({ src, dest }) => {
   const srcPath = resolve(root, src)

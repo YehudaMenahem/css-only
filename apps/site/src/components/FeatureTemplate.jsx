@@ -2,7 +2,7 @@ import './FeatureTemplate.css'
 
 /**
  * Shared template for feature comparison pages
- * 
+ *
  * @param {Object} props
  * @param {string} props.title - Feature title
  * @param {string} props.before - Name of the JS library being replaced
@@ -79,7 +79,9 @@ export function FeatureTemplate({
               {beforeCode && (
                 <div className="code-container">
                   <div className="code-label">Code</div>
-                  <pre><code>{beforeCode}</code></pre>
+                  <pre>
+                    <code>{beforeCode}</code>
+                  </pre>
                 </div>
               )}
             </div>
@@ -104,7 +106,9 @@ export function FeatureTemplate({
               {afterCode && (
                 <div className="code-container">
                   <div className="code-label">Code</div>
-                  <pre><code>{afterCode}</code></pre>
+                  <pre>
+                    <code>{afterCode}</code>
+                  </pre>
                 </div>
               )}
             </div>
@@ -136,7 +140,9 @@ export function FeatureTemplate({
               </div>
             </div>
           ) : (
-            <p className="placeholder-text">TODO: Measure and compare bundle size, main-thread time, and INP</p>
+            <p className="placeholder-text">
+              TODO: Measure and compare bundle size, main-thread time, and INP
+            </p>
           )}
         </div>
       </section>
@@ -161,7 +167,9 @@ export function FeatureTemplate({
               </div>
             </div>
           ) : (
-            <p className="placeholder-text">TODO: Document browser support and required fallbacks</p>
+            <p className="placeholder-text">
+              TODO: Document browser support and required fallbacks
+            </p>
           )}
         </div>
       </section>
@@ -175,7 +183,9 @@ export function FeatureTemplate({
               <p>{verdict}</p>
             </div>
           ) : (
-            <p className="placeholder-text">TODO: Honest verdict on complexity vs. performance trade-off</p>
+            <p className="placeholder-text">
+              TODO: Honest verdict on complexity vs. performance trade-off
+            </p>
           )}
         </div>
       </section>
