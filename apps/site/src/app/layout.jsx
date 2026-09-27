@@ -1,12 +1,7 @@
-import { Inter } from 'next/font/google'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
 import '@/styles/globals.css'
 import './layout.css'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-geist-sans',
-  display: 'swap',
-})
 
 /**
  * Root layout component for the entire site
@@ -16,7 +11,7 @@ const inter = Inter({
  */
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body>
         <div className="site-wrapper">
           <header className="site-header">

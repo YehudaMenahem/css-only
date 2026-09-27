@@ -1,17 +1,24 @@
 # Dependencies
 node_modules/
 .pnpm-debug.log*
+.pnpm-store/
 
 # Build outputs
 .next/
 out/
 dist/
+build/
 *.tsbuildinfo
+next-env.d.ts
 
 # Testing
 /coverage
 playwright-report/
 test-results/
+.playwright/
+
+# Screenshots (for PR descriptions only, not in repo)
+screenshots/
 
 # Environment
 .env*.local
@@ -23,6 +30,7 @@ test-results/
 *.swp
 *.swo
 *~
+.cursor/
 
 # OS
 .DS_Store
@@ -30,3 +38,4 @@ Thumbs.db
 
 # Misc
 *.log
+.turbo/
