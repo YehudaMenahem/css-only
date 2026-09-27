@@ -1,0 +1,7 @@
+# Browsers that get the full enhanced experience
+# Target: modern browsers with CSS container queries, :has(), nesting, etc.
+
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Safari versions
+last 2 Edge versions

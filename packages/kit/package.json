@@ -1,0 +1,39 @@
+{
+  "name": "css-only-kit",
+  "version": "0.1.0",
+  "description": "React components with CSS-only behavior, no JavaScript required",
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./Modal": {
+      "import": "./dist/Modal.js",
+      "default": "./dist/Modal.js"
+    },
+    "./Modal.css": {
+      "style": "./dist/Modal.css",
+      "default": "./dist/Modal.css"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint src",
+    "test:ci": "echo 'No tests yet'"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.0",
+    "tsup": "^8.0.2",
+    "react": "^18.3.0"
+  }
+}

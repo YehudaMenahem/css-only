@@ -1,0 +1,17 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "plugins": ["stylelint-no-unsupported-browser-features"],
+  "rules": {
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        "severity": "warning",
+        "ignore": ["css-nesting", "css-cascade-layers"]
+      }
+    ],
+    "selector-class-pattern": null,
+    "custom-property-pattern": null,
+    "no-descending-specificity": null,
+    "property-no-vendor-prefix": null
+  }
+}

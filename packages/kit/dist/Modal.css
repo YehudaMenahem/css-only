@@ -1,0 +1,85 @@
+/**
+ * Modal styles using CSS-only behavior
+ * Shipped in cascade layers for easy override
+ */
+
+@layer kit.tokens {
+  :root {
+    --modal-backdrop: rgba(0, 0, 0, 0.8);
+    --modal-bg: #1a1a1a;
+    --modal-text: #ffffff;
+    --modal-border: #333;
+    --modal-close-hover: #f44336;
+    --modal-padding: 2rem;
+    --modal-radius: 0.5rem;
+    --modal-max-width: 40rem;
+  }
+}
+
+@layer kit.base {
+  dialog {
+    border: 1px solid var(--modal-border);
+    border-radius: var(--modal-radius);
+    background: var(--modal-bg);
+    color: var(--modal-text);
+    padding: 0;
+    max-width: var(--modal-max-width);
+    width: calc(100vw - 2rem);
+    max-height: calc(100vh - 2rem);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.5);
+  }
+
+  dialog::backdrop {
+    background: var(--modal-backdrop);
+    backdrop-filter: blur(4px);
+  }
+
+  /* 
+   * Fallback for browsers without closedby support:
+   * Keep close button visible and interactive
+   * Safari currently needs this
+   */
+  @supports not selector(dialog[closedby]) {
+    dialog {
+      /* Ensure close button is always accessible */
+    }
+  }
+}
+
+@layer kit.components {
+  .modal-content {
+    padding: var(--modal-padding);
+    overflow-y: auto;
+    max-height: calc(100vh - 8rem);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--modal-text);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--modal-close-hover);
+  }
+
+  .modal-close:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "css-only-showcase",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Modern CSS replacing JavaScript in React components: a showcase of measured trade-offs and a CSS-only React component kit",
+  "scripts": {
+    "dev": "pnpm --filter site dev",
+    "build": "pnpm --recursive --stream build",
+    "lint": "pnpm --recursive --stream lint",
+    "format": "prettier --write \"**/*.{js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,json,css,md}\"",
+    "test": "pnpm --filter site test",
+    "test:ci": "pnpm --recursive --stream test:ci"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
