@@ -18,27 +18,33 @@ With TypeScript, types are checked in the editor and at build time, so they alwa
 ## Open
 
 ### Sessions 1–2 · kit to TypeScript
+
 - [ ] tsup (building the kit as a library) · Tool
 - [ ] ES modules · Tool
 
 ### Sessions 3–4 · site to TypeScript + deploy
+
 - [ ] pnpm + monorepo (workspaces) · Tool
 - [ ] Next.js App Router · Core
 - [ ] Vercel · Tool
 
 ### Sessions 5–6 · Modal page
+
 - [ ] React Server Components (why no "use client") · Core
 - [ ] `<dialog>` + invoker commands (`commandfor` / `command` / `closedby`) · Core
 
 ### Sessions 7–8 · Anchor Positioning page
+
 - [ ] Cascade layers (`@layer`) · Core
 - [ ] Custom properties + theming · Core
 
 ### Sessions 9–10 · Scroll Animations page
+
 - [ ] browserslist + `@supports` fallbacks · Tool
 - [ ] Stylelint + browser-support linting · Tool
 
 ### Sessions 11–12 · polish
+
 - [ ] Playwright · Tool
 - [ ] GitHub Actions CI · Tool
 - [ ] ESLint vs Prettier · Tool
