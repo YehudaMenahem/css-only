@@ -13,6 +13,8 @@ Each entry is a short answer (2-3 sentences) that I can explain in an interview.
 JSDoc is just a comment. Nothing enforces it, so over time it goes stale and stops reflecting the code.
 With TypeScript, types are checked in the editor and at build time, so they always stay in sync with the code, and mistakes are caught before they reach the user.
 
+**How:** The kit uses `strict` mode, so nothing is silently `any` and possibly-undefined values must be handled. New HTML attributes that React's types don't know yet (`commandfor`, `closedby`) are added through declaration merging in `invoker.d.ts`, instead of hiding errors with `@ts-ignore`. The migration is gradual: the kit first, the site later.
+
 ---
 
 ## Open
