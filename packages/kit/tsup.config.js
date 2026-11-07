@@ -2,11 +2,11 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig({
   entry: {
-    index: 'src/index.js',
-    Modal: 'src/Modal/Modal.jsx',
+    index: 'src/index.ts',
+    Modal: 'src/Modal/Modal.tsx',
   },
   format: ['esm'],
-  dts: false,
+  dts: true,
   splitting: false,
   sourcemap: true,
   clean: true,
