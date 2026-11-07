@@ -4,12 +4,15 @@
   "description": "React components with CSS-only behavior, no JavaScript required",
   "type": "module",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./Modal": {
+      "types": "./dist/Modal.d.ts",
       "import": "./dist/Modal.js",
       "default": "./dist/Modal.js"
     },
@@ -22,20 +25,30 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "pnpm typecheck && tsup",
+    "typecheck": "tsc --noEmit",
     "dev": "tsup --watch",
     "lint": "eslint src",
     "test:ci": "echo 'No tests yet'"
   },
   "peerDependencies": {
-    "react": "^19.0.0"
+    "react": "^19.0.0",
+    "@types/react": "^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/react": "^19.3.0",
     "eslint": "^10.11.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^17.12.0",
+    "react": "^19.3.0",
     "tsup": "^8.5.1",
-    "react": "^19.3.0"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.0"
   }
 }

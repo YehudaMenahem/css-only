@@ -13,7 +13,7 @@ A component library for React applications where components achieve interactivit
 - **Cascade layers** — all styles shipped in @layer for easy theming
 - **Per-component CSS imports** — import only what you use
 - **Theming via CSS custom properties** — override tokens without fighting specificity
-- **JSDoc annotations** — ready for TypeScript migration
+- **Strict TypeScript** — declaration files are published for consumers
 
 ## Installation
 
@@ -109,9 +109,9 @@ This structure lets you override tokens or inject your own layer between kit lay
 packages/kit/
 ├── src/
 │   ├── Modal/
-│   │   ├── Modal.jsx    # Component
+│   │   ├── Modal.tsx    # Component
 │   │   └── Modal.css    # Component styles
-│   └── index.js         # Main export
+│   └── index.ts         # Main export
 ├── dist/                # Built output
 │   ├── index.js
 │   ├── Modal.js
@@ -121,7 +121,7 @@ packages/kit/
 
 ### Build Process
 
-- **tsup** builds ES modules from `src/**/*.jsx`
+- **tsup** builds ES modules and `.d.ts` files from `src/**/*.ts` and `src/**/*.tsx`
 - **CSS files** are copied to `dist/` alongside their components
 - **package.json exports** provide subpath imports for per-component CSS
 

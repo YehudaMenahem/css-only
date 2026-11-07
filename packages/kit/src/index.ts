@@ -4,4 +4,4 @@
  * compatible with React Server Components (no "use client" needed)
  */
 
-export { Modal } from './Modal/Modal.jsx'
+export { Modal } from './Modal/Modal.js'

@@ -62,7 +62,7 @@ Each feature demonstrates a common React pattern that relies on JavaScript libra
 │   └── kit/                  # CSS-only component library
 │       ├── src/
 │       │   ├── Modal/        # Modal component + CSS
-│       │   └── index.js      # Main export
+│       │   └── index.ts      # Main export
 │       ├── dist/             # Built output (gitignored)
 │       └── package.json
 │
