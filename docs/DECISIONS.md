@@ -17,6 +17,16 @@ With TypeScript, types are checked in the editor and at build time, so they alwa
 
 ---
 
+## pnpm + monorepo · Tool ✅
+
+The site and the kit live in one repo because they evolve together: the site is the kit's live demo, so a new component and the page that shows it ship in one PR, with no need to publish a new version to npm.
+
+pnpm workspaces connect the two: `"css-only-kit": "workspace:*"` means "use the local package from this repo". It does not build anything; `pnpm build` at the root builds the kit before the site.
+
+Separation is kept at the package level (each has its own `package.json`, and the site only uses what the kit exports). If the kit had its own team or many external users, separate repos would be worth considering.
+
+---
+
 ## Open
 
 ### Sessions 1–2 · kit to TypeScript
@@ -26,7 +36,6 @@ With TypeScript, types are checked in the editor and at build time, so they alwa
 
 ### Sessions 3–4 · site to TypeScript + deploy
 
-- [ ] pnpm + monorepo (workspaces) · Tool
 - [ ] Next.js App Router · Core
 - [ ] Vercel · Tool
 
