@@ -34,7 +34,7 @@ export function Modal({
         {trigger}
       </button>
 
-      <dialog id={id} className={className} closedby="any">
+      <dialog id={id} className={className ? `modal ${className}` : 'modal'} closedby="any">
         <div className="modal-content">{children}</div>
         <button
           type="button"
