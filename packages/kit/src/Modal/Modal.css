@@ -17,7 +17,7 @@
 }
 
 @layer kit.base {
-  dialog {
+  dialog.modal {
     border: 1px solid var(--modal-border);
     border-radius: var(--modal-radius);
     background: var(--modal-bg);
@@ -25,24 +25,13 @@
     padding: 0;
     max-width: var(--modal-max-width);
     width: calc(100vw - 2rem);
-    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.5);
   }
 
-  dialog::backdrop {
+  dialog.modal::backdrop {
     background: var(--modal-backdrop);
     backdrop-filter: blur(4px);
-  }
-
-  /* 
-   * Fallback for browsers without closedby support:
-   * Keep close button visible and interactive
-   * Safari currently needs this
-   */
-  @supports not selector(dialog[closedby]) {
-    dialog {
-      /* Ensure close button is always accessible */
-    }
   }
 }
 
@@ -50,7 +39,7 @@
   .modal-content {
     padding: var(--modal-padding);
     overflow-y: auto;
-    max-height: calc(100vh - 8rem);
+    max-height: calc(100dvh - 8rem);
   }
 
   .modal-close {
