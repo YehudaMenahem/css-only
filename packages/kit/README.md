@@ -60,10 +60,12 @@ export default function MyPage() {
 
 #### Browser Support
 
-- **commandfor/command**: Chrome 126+, Edge 126+ (limited support)
-- **dialog closedby**: Chrome 126+, Edge 126+ (not yet in Firefox/Safari)
+Checked November 2026.
 
-**Fallback:** The close button (×) remains visible and interactive for browsers without `closedby` support.
+- **command / commandfor**: Baseline Newly Available since 12 December 2025. Chrome 135, Edge 135, Firefox 144, Safari 26.2.
+- **dialog closedby**: Chrome 134, Edge 134, Firefox 141. Stable Safari does not ship it yet (Can I use, through the Safari 27 releases). WebKit merged the feature in July 2026.
+
+**Fallback:** The close button (×) uses `command="close"`, so it works in every browser that has invoker commands, including Safari, where `closedby` is ignored. Escape still closes a modal dialog there. Browsers without invoker commands will not open the dialog. This package does not ship a JavaScript polyfill.
 
 #### React Compatibility
 

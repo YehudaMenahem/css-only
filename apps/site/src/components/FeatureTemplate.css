@@ -24,6 +24,7 @@
   .feature-meta {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: var(--space-lg);
   }
 
@@ -56,6 +57,7 @@
   }
 
   .comparison-panel {
+    min-width: 0;
     padding: var(--space-lg);
     background: var(--color-bg);
     border: 1px solid var(--color-border);
@@ -80,6 +82,7 @@
   .comparison-heading {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: var(--space-sm);
     margin-bottom: var(--space-md);
     font-size: var(--font-size-xl);
@@ -117,6 +120,10 @@
     text-align: center;
     color: var(--color-text-dimmer);
     font-style: italic;
+  }
+
+  .code-container {
+    min-width: 0;
   }
 
   .code-container pre {
@@ -208,6 +215,17 @@
     font-size: var(--font-size-lg);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-dim);
+  }
+
+  .verdict-content p + p {
+    margin-top: var(--space-sm);
+  }
+
+  .section-note {
+    margin-top: var(--space-md);
+    color: var(--color-text-dim);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
   }
 
   .placeholder-text {
