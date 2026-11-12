@@ -62,10 +62,10 @@ export default function MyPage() {
 
 Checked November 2026.
 
-- **command / commandfor**: Baseline Newly Available since 12 December 2025. Chrome 135, Edge 135, Firefox 144, Safari 26.2.
-- **dialog closedby**: Chrome 134, Edge 134, Firefox 141. Stable Safari does not ship it yet (Can I use, through the Safari 27 releases). WebKit merged the feature in July 2026.
+- **command / commandfor**: [Baseline Newly Available since 12 December 2025](https://web-platform-dx.github.io/web-features-explorer/features/invoker-commands/). [Chrome 135, Edge 135, Firefox 144, Safari 26.2](https://caniuse.com/wf-invoker-commands) ([MDN](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API)).
+- **dialog closedby**: [Chrome 134, Edge 134, Firefox 141](https://caniuse.com/wf-dialog-closedby). Stable Safari does not ship it yet ([Can I use](https://caniuse.com/wf-dialog-closedby), through the Safari 27 releases). [WebKit merged the feature in July 2026](https://commits.webkit.org/316680@main) ([MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby)).
 
-**Fallback:** The close button (×) uses `command="close"`, so it works in every browser that has invoker commands, including Safari, where `closedby` is ignored. Escape still closes a modal dialog there. Browsers without invoker commands will not open the dialog. This package does not ship a JavaScript polyfill.
+**Fallback:** The close button (×) uses `command="close"`, so it works in every browser that has [invoker commands](https://caniuse.com/wf-invoker-commands), including Safari, where `closedby` is ignored. [Escape still closes a modal dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby) there. Browsers without invoker commands will not open the dialog. This package does not ship a JavaScript polyfill.
 
 #### React Compatibility
 
@@ -176,8 +176,8 @@ Targets modern browsers with CSS features like:
 
 ### Component-Specific Support
 
-- **Modal (commandfor/closedby)**: Chrome 126+, Edge 126+ (limited)
-  - Fallback: Visible close button for older browsers
+- **Modal (`command` / `commandfor`)**: [Chrome 135, Edge 135, Firefox 144, Safari 26.2](https://caniuse.com/wf-invoker-commands). [`closedby`](https://caniuse.com/wf-dialog-closedby): Chrome 134, Edge 134, Firefox 141. Stable Safari does not ship `closedby` yet.
+  - Fallback: the close button uses `command="close"`. [Escape still closes a modal dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby).
 
 ## Contributing
 

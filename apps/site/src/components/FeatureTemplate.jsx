@@ -22,7 +22,7 @@ import './FeatureTemplate.css'
  * @param {string} [props.browserSupport.chrome] - Chrome version
  * @param {string} [props.browserSupport.firefox] - Firefox version
  * @param {string} [props.browserSupport.safari] - Safari version
- * @param {string} [props.browserSupport.note] - Caveats the version grid cannot show
+ * @param {import('react').ReactNode} [props.browserSupport.note] - Caveats the version grid cannot show
  * @param {import('react').ReactNode} [props.verdict] - Honest assessment of whether it's worth it
  */
 export function FeatureTemplate({

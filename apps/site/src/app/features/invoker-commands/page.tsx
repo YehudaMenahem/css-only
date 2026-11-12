@@ -1,9 +1,27 @@
+import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { Modal } from 'css-only-kit'
 import 'css-only-kit/Modal.css'
 import { FeatureTemplate } from '@/components/FeatureTemplate'
 import { StatefulDialog } from './StatefulDialog'
 import './page.css'
+
+const invokerSupport = 'https://caniuse.com/wf-invoker-commands'
+const invokerDocs = 'https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API'
+const invokerBaseline =
+  'https://web-platform-dx.github.io/web-features-explorer/features/invoker-commands/'
+const closedBySupport = 'https://caniuse.com/wf-dialog-closedby'
+const closedByDocs =
+  'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby'
+const webkitClosedBy = 'https://commits.webkit.org/316680@main'
+
+function Source({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a href={href} target="_blank" rel="noopener">
+      {children}
+    </a>
+  )
+}
 
 const beforeCode = `'use client'
 
@@ -112,14 +130,15 @@ export default function InvokerCommandsPage() {
             <h2>Opened with invoker commands</h2>
             <p className="dialog-copy">
               The button carries commandfor and command=&quot;show-modal&quot;. React does not
-              handle the click. Close with the button, Escape, or a backdrop click where closedby is
+              handle the click. Close with the button, <Source href={closedByDocs}>Escape</Source>,
+              or a backdrop click where <Source href={closedBySupport}>closedby</Source> is
               supported.
             </p>
           </Modal>
           <p className="dialog-demo-note">
             Server Component. This button is ordinary HTML, so it works before any JavaScript loads.
-            Backdrop dismiss is closedby=&quot;any&quot;, which stable Safari does not implement
-            yet.
+            Backdrop dismiss is closedby=&quot;any&quot;, which{' '}
+            <Source href={closedBySupport}>stable Safari does not implement yet</Source>.
           </p>
         </div>
       }
@@ -136,22 +155,45 @@ export default function InvokerCommandsPage() {
         chrome: '135+',
         firefox: '144+',
         safari: '26.2+',
-        note: 'These versions are command and commandfor. The feature has been Baseline Newly Available since 12 December 2025, about 87% of global users on Can I use. Edge 135 matches Chrome. closedby is a separate feature: Chrome 134 and Firefox 141 honor closedby="any" and dismiss on a backdrop click. Stable Safari does not ship closedby (Can I use, through the Safari 27 releases). WebKit merged it in July 2026, so a later Safari may pick it up. In Safari 26.2 the close button and Escape still work, because a modal dialog already treats Escape as a close request. This kit does not load a polyfill. A polyfill would put the JavaScript back.',
+        note: (
+          <>
+            These versions are <Source href={invokerSupport}>command and commandfor</Source> (
+            <Source href={invokerDocs}>MDN</Source>
+            ). The feature has been{' '}
+            <Source href={invokerBaseline}>Baseline Newly Available since 12 December 2025</Source>,
+            about 87% of global users on <Source href={invokerSupport}>Can I use</Source>. Edge 135
+            matches Chrome there. closedby is a separate feature:{' '}
+            <Source href={closedBySupport}>Chrome 134 and Firefox 141</Source> honor
+            closedby=&quot;any&quot; and dismiss on a backdrop click (
+            <Source href={closedByDocs}>MDN</Source>
+            ). Stable Safari does not ship closedby (
+            <Source href={closedBySupport}>Can I use</Source>, through the Safari 27 releases).{' '}
+            <Source href={webkitClosedBy}>WebKit merged it in July 2026</Source>, so a later Safari
+            may pick it up. In Safari 26.2 the close button and Escape still work, because a modal
+            dialog already treats Escape as a close request (
+            <Source href={closedByDocs}>MDN</Source>
+            ). This kit does not load a polyfill. A polyfill would put the JavaScript back.
+          </>
+        ),
       }}
       verdict={
         <>
           <p>
             Ship it for a confirm dialog or any modal whose job is open, close, focus, and Escape,
-            when the audience is on current Chrome, Edge, Firefox, and Safari. The page that renders
-            Modal stays a Server Component. The button works from the first HTML, including before
-            the client bundle arrives.
+            when the audience is on{' '}
+            <Source href={invokerSupport}>current Chrome, Edge, Firefox, and Safari</Source>. The
+            page that renders Modal stays a Server Component. The button works from the first HTML,
+            including before the client bundle arrives.
           </p>
           <p>
-            Keep Radix, or a client component like the one on the left, when you still support
-            Safari before 26.2, or when the dialog has to animate, take over scroll locking itself,
-            or promise that a backdrop click closes it on every phone. Backdrop dismiss is closedby,
-            and stable Safari does not implement it as of November 2026. The close button is the
-            path that works in every browser with invoker commands.
+            Keep Radix, or a client component like the one on the left, when you still support{' '}
+            <Source href={invokerSupport}>Safari before 26.2</Source>, or when the dialog has to
+            animate, take over scroll locking itself, or promise that a backdrop click closes it on
+            every phone. Backdrop dismiss is closedby, and{' '}
+            <Source href={closedBySupport}>
+              stable Safari does not implement it as of November 2026
+            </Source>
+            . The close button is the path that works in every browser with invoker commands.
           </p>
           <p>
             Radix buys the missing pieces with a client bundle that is idle until hydration. The
