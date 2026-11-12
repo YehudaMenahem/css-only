@@ -22,7 +22,7 @@ test('modal can be opened', async ({ page }) => {
 test('invoker dialog opens and closes from HTML', async ({ page }) => {
   await page.goto('/features/invoker-commands')
 
-  const open = page.locator('button[commandfor="invoker-dialog"]')
+  const open = page.getByRole('button', { name: 'Open with HTML' })
   const dialog = page.locator('dialog#invoker-dialog')
 
   await open.click()
