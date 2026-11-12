@@ -18,3 +18,36 @@ test('modal can be opened', async ({ page }) => {
     await expect(dialog).toBeVisible()
   }
 })
+
+test('invoker dialog opens and closes from HTML', async ({ page }) => {
+  await page.goto('/features/invoker-commands')
+
+  const open = page.getByRole('button', { name: 'Open with HTML' })
+  const dialog = page.locator('dialog#invoker-dialog')
+
+  await open.click()
+  await expect(dialog).toBeVisible()
+
+  await dialog.locator('button[command="close"]').click()
+  await expect(dialog).toBeHidden()
+
+  await open.click()
+  await expect(dialog).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(dialog).toBeHidden()
+})
+
+test('useState dialog opens after hydration', async ({ page }) => {
+  await page.goto('/features/invoker-commands')
+
+  const open = page.getByRole('button', { name: 'Open with JavaScript' })
+  const dialog = page.locator('dialog#state-dialog')
+
+  await expect(async () => {
+    if (!(await dialog.isVisible())) await open.click()
+    await expect(dialog).toBeVisible()
+  }).toPass()
+
+  await dialog.getByRole('button', { name: 'Close' }).click()
+  await expect(dialog).toBeHidden()
+})

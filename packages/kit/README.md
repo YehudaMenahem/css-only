@@ -60,10 +60,12 @@ export default function MyPage() {
 
 #### Browser Support
 
-- **commandfor/command**: Chrome 126+, Edge 126+ (limited support)
-- **dialog closedby**: Chrome 126+, Edge 126+ (not yet in Firefox/Safari)
+Checked November 2026.
 
-**Fallback:** The close button (×) remains visible and interactive for browsers without `closedby` support.
+- **command / commandfor**: [Baseline Newly Available since 12 December 2025](https://web-platform-dx.github.io/web-features-explorer/features/invoker-commands/) ([MDN: since December 2025](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API)). [Chrome 135, Edge 135, Firefox 144, Safari 26.2](https://caniuse.com/wf-invoker-commands). Can I use puts global usage at 86.98%.
+- **dialog closedby**: [Chrome 134, Edge 134, Firefox 141](https://caniuse.com/mdn-html_elements_dialog_closedby). [Safari does not support it through 27.3. Safari Technology Preview does](https://caniuse.com/mdn-html_elements_dialog_closedby) ([MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby)).
+
+**Fallback:** The close button (×) uses `command="close"`, so it works in every browser that has [invoker commands](https://caniuse.com/wf-invoker-commands), including Safari, where `closedby` is ignored. [Escape still closes a modal dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby) there. Browsers without invoker commands will not open the dialog. This package does not ship a JavaScript polyfill.
 
 #### React Compatibility
 
@@ -174,8 +176,8 @@ Targets modern browsers with CSS features like:
 
 ### Component-Specific Support
 
-- **Modal (commandfor/closedby)**: Chrome 126+, Edge 126+ (limited)
-  - Fallback: Visible close button for older browsers
+- **Modal (`command` / `commandfor`)**: [Chrome 135, Edge 135, Firefox 144, Safari 26.2](https://caniuse.com/wf-invoker-commands). [`closedby`](https://caniuse.com/mdn-html_elements_dialog_closedby): Chrome 134, Edge 134, Firefox 141. Safari does not support `closedby` through 27.3. Safari Technology Preview does.
+  - Fallback: the close button uses `command="close"`. [Escape still closes a modal dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby).
 
 ## Contributing
 

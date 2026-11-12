@@ -17,11 +17,13 @@ import './FeatureTemplate.css'
  * @param {string} [props.costs.afterSize] - Bundle size after
  * @param {string} [props.costs.beforeINP] - INP cost before
  * @param {string} [props.costs.afterINP] - INP cost after
+ * @param {string} [props.costs.note] - How the figures were measured, and what they leave out
  * @param {Object} [props.browserSupport] - Browser support info
  * @param {string} [props.browserSupport.chrome] - Chrome version
  * @param {string} [props.browserSupport.firefox] - Firefox version
  * @param {string} [props.browserSupport.safari] - Safari version
- * @param {string} [props.verdict] - Honest assessment of whether it's worth it
+ * @param {import('react').ReactNode} [props.browserSupport.note] - Caveats the version grid cannot show
+ * @param {import('react').ReactNode} [props.verdict] - Honest assessment of whether it's worth it
  */
 export function FeatureTemplate({
   title,
@@ -121,24 +123,27 @@ export function FeatureTemplate({
         <div className="container content-narrow">
           <h2 className="section-heading">Measured Costs</h2>
           {costs ? (
-            <div className="costs-grid">
-              <div className="cost-item">
-                <div className="cost-label">Bundle Size</div>
-                <div className="cost-comparison">
-                  <span className="cost-before">{costs.beforeSize}</span>
-                  <span className="cost-arrow">→</span>
-                  <span className="cost-after">{costs.afterSize}</span>
+            <>
+              <div className="costs-grid">
+                <div className="cost-item">
+                  <div className="cost-label">Bundle Size</div>
+                  <div className="cost-comparison">
+                    <span className="cost-before">{costs.beforeSize}</span>
+                    <span className="cost-arrow">→</span>
+                    <span className="cost-after">{costs.afterSize}</span>
+                  </div>
+                </div>
+                <div className="cost-item">
+                  <div className="cost-label">INP Impact</div>
+                  <div className="cost-comparison">
+                    <span className="cost-before">{costs.beforeINP}</span>
+                    <span className="cost-arrow">→</span>
+                    <span className="cost-after">{costs.afterINP}</span>
+                  </div>
                 </div>
               </div>
-              <div className="cost-item">
-                <div className="cost-label">INP Impact</div>
-                <div className="cost-comparison">
-                  <span className="cost-before">{costs.beforeINP}</span>
-                  <span className="cost-arrow">→</span>
-                  <span className="cost-after">{costs.afterINP}</span>
-                </div>
-              </div>
-            </div>
+              {costs.note && <p className="section-note">{costs.note}</p>}
+            </>
           ) : (
             <p className="placeholder-text">
               TODO: Measure and compare bundle size, main-thread time, and INP
@@ -166,7 +171,9 @@ export function FeatureTemplate({
                 <span className="browser-version">{browserSupport.safari}</span>
               </div>
             </div>
-          ) : (
+          ) : null}
+          {browserSupport?.note && <p className="section-note">{browserSupport.note}</p>}
+          {!browserSupport && (
             <p className="placeholder-text">
               TODO: Document browser support and required fallbacks
             </p>
@@ -180,7 +187,7 @@ export function FeatureTemplate({
           <h2 className="section-heading">Is it worth it?</h2>
           {verdict ? (
             <div className="verdict-content">
-              <p>{verdict}</p>
+              {typeof verdict === 'string' ? <p>{verdict}</p> : verdict}
             </div>
           ) : (
             <p className="placeholder-text">

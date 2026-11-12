@@ -22,10 +22,10 @@ importers:
         version: link:../../packages/kit
       geist:
         specifier: ^1.7.2
-        version: 1.7.2(next@16.3.6(@playwright/test@1.63.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
+        version: 1.7.2(next@16.3.6(@playwright/test@1.63.0)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
       next:
         specifier: ^16.3.6
-        version: 16.3.6(@playwright/test@1.63.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 16.3.6(@playwright/test@1.63.0)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react:
         specifier: ^19.3.0
         version: 19.3.0
@@ -39,18 +39,33 @@ importers:
       '@playwright/test':
         specifier: ^1.63.0
         version: 1.63.0
+      '@types/node':
+        specifier: 26.6.6
+        version: 26.6.6
+      '@types/react':
+        specifier: ^19.3.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.3.0
+        version: 19.3.0(@types/react@19.3.0)
       eslint:
         specifier: ^10.11.0
         version: 10.11.0
       stylelint:
         specifier: ^17.15.0
-        version: 17.15.0(typescript@6.0.3)
+        version: 17.15.0(typescript@5.9.3)
       stylelint-config-standard:
         specifier: ^40.0.0
-        version: 40.0.0(stylelint@17.15.0(typescript@6.0.3))
+        version: 40.0.0(stylelint@17.15.0(typescript@5.9.3))
       stylelint-no-unsupported-browser-features:
         specifier: ^8.1.2
-        version: 8.1.2(stylelint@17.15.0(typescript@6.0.3))
+        version: 8.1.2(stylelint@17.15.0(typescript@5.9.3))
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      typescript-eslint:
+        specifier: ^8.72.0
+        version: 8.72.0(eslint@10.11.0)(typescript@5.9.3)
 
   packages/kit:
     devDependencies:
@@ -779,6 +794,14 @@ packages:
 
   '@types/minimatch@3.0.5':
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
+
+  '@types/node@26.6.6':
+    resolution: {integrity: sha512-MzQj+8Kx3XI40OmUAE6Qoh58ZMNstNNMwn2nfd3qWsfe7nDNSqJNzes4njhz6AHwrSHOffSLwXU6yb474Q4aog==}
+
+  '@types/react-dom@19.3.0':
+    resolution: {integrity: sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q==}
+    peerDependencies:
+      '@types/react': ^19.3.0
 
   '@types/react@19.3.0':
     resolution: {integrity: sha512-N0rFCuH9YoxG9/m61l9MfpJKfmLOVU0em7ipIz6TRgSSkvReLB9vL85GB+yr8Bs5leqpvg96JSwF4ZS1s4viQg==}
@@ -2214,17 +2237,15 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@6.0.3:
-    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-
   ufo@1.6.4:
     resolution: {integrity: sha512-JFNbkD1Svwe0KvGi8GOeLcP4kAWQ609twvCdcHxq1oSL8svv39ZuSvajcD8B+5D0eL4+s1Is2D/O6KN3qcTeRA==}
 
   unbox-primitive@1.1.0:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
     engines: {node: '>= 0.4'}
+
+  undici-types@8.9.0:
+    resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
   unicorn-magic@0.4.1:
     resolution: {integrity: sha512-lzlXPoVB0Uy/FvTaUgX39RbixYiSKoc3JSoSf01+0c2B6FR3qdYIPN7Qjo/AV7n6sqLCk0509cT3LRj1oSZ1+A==}
@@ -2744,6 +2765,14 @@ snapshots:
 
   '@types/minimatch@3.0.5': {}
 
+  '@types/node@26.6.6':
+    dependencies:
+      undici-types: 8.9.0
+
+  '@types/react-dom@19.3.0(@types/react@19.3.0)':
+    dependencies:
+      '@types/react': 19.3.0
+
   '@types/react@19.3.0':
     dependencies:
       csstype: 3.2.3
@@ -3035,14 +3064,14 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig@9.0.2(typescript@6.0.3):
+  cosmiconfig@9.0.2(typescript@5.9.3):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
       js-yaml: 4.3.2
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 6.0.3
+      typescript: 5.9.3
 
   cross-spawn@7.0.6:
     dependencies:
@@ -3453,9 +3482,9 @@ snapshots:
 
   functions-have-names@1.2.3: {}
 
-  geist@1.7.2(next@16.3.6(@playwright/test@1.63.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)):
+  geist@1.7.2(next@16.3.6(@playwright/test@1.63.0)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)):
     dependencies:
-      next: 16.3.6(@playwright/test@1.63.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      next: 16.3.6(@playwright/test@1.63.0)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
 
   generator-function@2.0.1: {}
 
@@ -3818,7 +3847,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next@16.3.6(@playwright/test@1.63.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  next@16.3.6(@playwright/test@1.63.0)(@types/node@26.6.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
       '@next/env': 16.3.6
       '@swc/helpers': 0.5.23
@@ -3838,7 +3867,7 @@ snapshots:
       '@next/swc-win32-arm64-msvc': 16.3.6
       '@next/swc-win32-x64-msvc': 16.3.6
       '@playwright/test': 1.63.0
-      sharp: 0.35.4
+      sharp: 0.35.4(@types/node@26.6.6)
     transitivePeerDependencies:
       - '@babel/core'
       - '@types/node'
@@ -4155,7 +4184,7 @@ snapshots:
       es-errors: 1.3.0
       es-object-atoms: 1.1.2
 
-  sharp@0.35.4:
+  sharp@0.35.4(@types/node@26.6.6):
     dependencies:
       '@img/colour': 1.1.0
       detect-libc: 2.1.2
@@ -4186,6 +4215,7 @@ snapshots:
       '@img/sharp-win32-arm64': 0.35.4
       '@img/sharp-win32-ia32': 0.35.4
       '@img/sharp-win32-x64': 0.35.4
+      '@types/node': 26.6.6
     optional: true
 
   shebang-command@2.0.0:
@@ -4318,23 +4348,23 @@ snapshots:
       client-only: 0.0.1
       react: 19.3.0
 
-  stylelint-config-recommended@18.0.0(stylelint@17.15.0(typescript@6.0.3)):
+  stylelint-config-recommended@18.0.0(stylelint@17.15.0(typescript@5.9.3)):
     dependencies:
-      stylelint: 17.15.0(typescript@6.0.3)
+      stylelint: 17.15.0(typescript@5.9.3)
 
-  stylelint-config-standard@40.0.0(stylelint@17.15.0(typescript@6.0.3)):
+  stylelint-config-standard@40.0.0(stylelint@17.15.0(typescript@5.9.3)):
     dependencies:
-      stylelint: 17.15.0(typescript@6.0.3)
-      stylelint-config-recommended: 18.0.0(stylelint@17.15.0(typescript@6.0.3))
+      stylelint: 17.15.0(typescript@5.9.3)
+      stylelint-config-recommended: 18.0.0(stylelint@17.15.0(typescript@5.9.3))
 
-  stylelint-no-unsupported-browser-features@8.1.2(stylelint@17.15.0(typescript@6.0.3)):
+  stylelint-no-unsupported-browser-features@8.1.2(stylelint@17.15.0(typescript@5.9.3)):
     dependencies:
       browserslist: 4.29.1
       doiuse: 6.0.6
       postcss: 8.5.28
-      stylelint: 17.15.0(typescript@6.0.3)
+      stylelint: 17.15.0(typescript@5.9.3)
 
-  stylelint@17.15.0(typescript@6.0.3):
+  stylelint@17.15.0(typescript@5.9.3):
     dependencies:
       '@csstools/css-calc': 3.4.1(@csstools/css-parser-algorithms@4.0.1(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-parser-algorithms': 4.0.1(@csstools/css-tokenizer@4.0.2)
@@ -4344,7 +4374,7 @@ snapshots:
       '@csstools/selector-resolve-nested': 4.0.2(postcss-selector-parser@7.1.6)
       '@csstools/selector-specificity': 6.0.0(postcss-selector-parser@7.1.6)
       colord: 2.10.0
-      cosmiconfig: 9.0.2(typescript@6.0.3)
+      cosmiconfig: 9.0.2(typescript@5.9.3)
       css-functions-list: 3.3.3
       css-tree: 3.2.1
       debug: 4.4.3
@@ -4510,9 +4540,6 @@ snapshots:
 
   typescript@5.9.3: {}
 
-  typescript@6.0.3:
-    optional: true
-
   ufo@1.6.4: {}
 
   unbox-primitive@1.1.0:
@@ -4521,6 +4548,8 @@ snapshots:
       has-bigints: 1.1.0
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
+
+  undici-types@8.9.0: {}
 
   unicorn-magic@0.4.1: {}
 
