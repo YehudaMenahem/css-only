@@ -10,10 +10,9 @@ const invokerSupport = 'https://caniuse.com/wf-invoker-commands'
 const invokerDocs = 'https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API'
 const invokerBaseline =
   'https://web-platform-dx.github.io/web-features-explorer/features/invoker-commands/'
-const closedBySupport = 'https://caniuse.com/wf-dialog-closedby'
+const closedBySupport = 'https://caniuse.com/mdn-html_elements_dialog_closedby'
 const closedByDocs =
   'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby'
-const webkitClosedBy = 'https://commits.webkit.org/316680@main'
 
 function Source({ href, children }: { href: string; children: ReactNode }) {
   return (
@@ -138,7 +137,7 @@ export default function InvokerCommandsPage() {
           <p className="dialog-demo-note">
             Server Component. This button is ordinary HTML, so it works before any JavaScript loads.
             Backdrop dismiss is closedby=&quot;any&quot;, which{' '}
-            <Source href={closedBySupport}>stable Safari does not implement yet</Source>.
+            <Source href={closedBySupport}>Safari does not support through 27.3</Source>.
           </p>
         </div>
       }
@@ -158,21 +157,21 @@ export default function InvokerCommandsPage() {
         note: (
           <>
             These versions are <Source href={invokerSupport}>command and commandfor</Source> (
-            <Source href={invokerDocs}>MDN</Source>
-            ). The feature has been{' '}
-            <Source href={invokerBaseline}>Baseline Newly Available since 12 December 2025</Source>,
-            about 87% of global users on <Source href={invokerSupport}>Can I use</Source>. Edge 135
-            matches Chrome there. closedby is a separate feature:{' '}
-            <Source href={closedBySupport}>Chrome 134 and Firefox 141</Source> honor
-            closedby=&quot;any&quot; and dismiss on a backdrop click (
-            <Source href={closedByDocs}>MDN</Source>
-            ). Stable Safari does not ship closedby (
-            <Source href={closedBySupport}>Can I use</Source>, through the Safari 27 releases).{' '}
-            <Source href={webkitClosedBy}>WebKit merged it in July 2026</Source>, so a later Safari
-            may pick it up. In Safari 26.2 the close button and Escape still work, because a modal
-            dialog already treats Escape as a close request (
-            <Source href={closedByDocs}>MDN</Source>
-            ). This kit does not load a polyfill. A polyfill would put the JavaScript back.
+            <Source href={invokerDocs}>MDN</Source>). The feature has been{' '}
+            <Source href={invokerBaseline}>Baseline Newly Available since 12 December 2025</Source>{' '}
+            (<Source href={invokerDocs}>MDN: since December 2025</Source>).{' '}
+            <Source href={invokerSupport}>Can I use</Source> puts global usage at 86.98%, and{' '}
+            <Source href={invokerSupport}>Edge 135</Source> matches Chrome. closedby is a separate
+            feature: <Source href={closedBySupport}>Chrome 134, Edge 134, and Firefox 141</Source>{' '}
+            honor closedby=&quot;any&quot; and dismiss on a backdrop click (
+            <Source href={closedByDocs}>MDN</Source>).{' '}
+            <Source href={closedBySupport}>
+              Safari does not support closedby through 27.3. Safari Technology Preview does.
+            </Source>{' '}
+            In Safari 26.2 the close button and Escape still work, because a modal dialog opened
+            with showModal() already treats Escape as a close request (
+            <Source href={closedByDocs}>MDN</Source>). This kit does not load a polyfill. A polyfill
+            would put the JavaScript back.
           </>
         ),
       }}
@@ -190,10 +189,8 @@ export default function InvokerCommandsPage() {
             <Source href={invokerSupport}>Safari before 26.2</Source>, or when the dialog has to
             animate, take over scroll locking itself, or promise that a backdrop click closes it on
             every phone. Backdrop dismiss is closedby, and{' '}
-            <Source href={closedBySupport}>
-              stable Safari does not implement it as of November 2026
-            </Source>
-            . The close button is the path that works in every browser with invoker commands.
+            <Source href={closedBySupport}>Safari does not support it through 27.3</Source>. The
+            close button is the path that works in every browser with invoker commands.
           </p>
           <p>
             Radix buys the missing pieces with a client bundle that is idle until hydration. The
