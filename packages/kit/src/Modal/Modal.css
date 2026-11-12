@@ -5,39 +5,88 @@
 
 @layer kit.tokens {
   :root {
-    --modal-backdrop: rgba(0, 0, 0, 0.8);
-    --modal-bg: #1a1a1a;
+    --modal-backdrop: rgba(8, 8, 10, 0.72);
+    --modal-bg: color-mix(in srgb, #1a1a1a 78%, transparent);
     --modal-text: #ffffff;
-    --modal-border: #333;
-    --modal-close-hover: #f44336;
-    --modal-padding: 2rem;
-    --modal-radius: 0.5rem;
-    --modal-max-width: 40rem;
+    --modal-border: rgba(255, 255, 255, 0.14);
+    --modal-close-hover: #f36;
+    --modal-padding: 2.5rem;
+    --modal-radius: 1.5rem;
+    --modal-radius-squircle: 2.75rem;
+    --modal-max-width: 36rem;
+    --modal-blur: 20px;
+    --modal-glow:
+      0 0 0 1px rgba(255, 51, 102, 0.18), 0 24px 80px rgba(0, 0, 0, 0.45),
+      0 0 80px rgba(255, 51, 102, 0.12);
+    --modal-chip-radius: 0.6rem;
+    --modal-chip-radius-squircle: 0.85rem;
   }
 }
 
 @layer kit.base {
+  /*
+   * Scoped to this component. The site reset sets margin: 0 on every element,
+   * which removes the user-agent margin: auto that centers a modal dialog.
+   * top/left + translate keeps the hit target on the panel. inset: 0 with an
+   * auto height stretches hit testing over the viewport, so backdrop clicks
+   * never dismiss the dialog.
+   */
   dialog.modal {
+    position: fixed;
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: min(var(--modal-max-width), calc(100vw - 2rem));
+    height: fit-content;
+    max-height: calc(100dvh - 2rem);
+    margin: 0;
+    padding: 0;
     border: 1px solid var(--modal-border);
     border-radius: var(--modal-radius);
+    background: #1a1a1a;
     background: var(--modal-bg);
     color: var(--modal-text);
-    padding: 0;
-    max-width: var(--modal-max-width);
-    width: calc(100vw - 2rem);
-    max-height: calc(100dvh - 2rem);
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.5);
+    box-shadow: var(--modal-glow);
+    backdrop-filter: blur(var(--modal-blur));
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition:
+      opacity 200ms ease,
+      transform 200ms ease,
+      overlay 200ms ease allow-discrete,
+      display 200ms ease allow-discrete;
+  }
+
+  dialog.modal[open] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @starting-style {
+    dialog.modal[open] {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+  }
+
+  @supports (corner-shape: squircle) {
+    dialog.modal {
+      border-radius: var(--modal-radius-squircle);
+      corner-shape: squircle;
+    }
   }
 
   dialog.modal::backdrop {
     background: var(--modal-backdrop);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(var(--modal-blur));
   }
 }
 
 @layer kit.components {
   .modal-content {
     padding: var(--modal-padding);
+    padding-right: calc(var(--modal-padding) + 1.75rem);
     overflow-y: auto;
     max-height: calc(100dvh - 8rem);
   }
@@ -46,26 +95,36 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: transparent;
-    border: none;
-    color: var(--modal-text);
-    font-size: 2rem;
-    line-height: 1;
-    cursor: pointer;
-    padding: 0.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.25rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 1px solid var(--modal-border);
+    border-radius: var(--modal-chip-radius);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--modal-text);
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
     transition:
-      background-color 0.2s,
-      color 0.2s;
+      background-color 200ms ease,
+      border-color 200ms ease,
+      color 200ms ease;
+  }
+
+  @supports (corner-shape: squircle) {
+    .modal-close {
+      border-radius: var(--modal-chip-radius-squircle);
+      corner-shape: squircle;
+    }
   }
 
   .modal-close:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.14);
+    border-color: var(--modal-close-hover);
     color: var(--modal-close-hover);
   }
 

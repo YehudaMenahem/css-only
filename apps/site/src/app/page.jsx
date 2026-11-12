@@ -79,16 +79,18 @@ export default function HomePage() {
                 trigger="Try a CSS-Only Modal"
                 triggerClassName="btn btn-primary"
               >
-                <h2>This modal uses zero JavaScript</h2>
-                <p style={{ marginTop: 'var(--space-sm)', color: 'var(--color-text-dim)' }}>
-                  It&apos;s powered by <code>commandfor</code> + <code>command</code> attributes and{' '}
-                  <code>&lt;dialog closedby&gt;</code>. No useState, no event handlers, no &quot;use
-                  client&quot;.
-                </p>
-                <p style={{ marginTop: 'var(--space-sm)', color: 'var(--color-text-dim)' }}>
-                  This component is a React Server Component. Close with the × button or click
-                  outside.
-                </p>
+                <div className="modal-demo">
+                  <h2>This modal uses zero JavaScript</h2>
+                  <p>
+                    It&apos;s powered by <code>commandfor</code> + <code>command</code> attributes
+                    and <code>&lt;dialog closedby&gt;</code>. No useState, no event handlers, no
+                    &quot;use client&quot;.
+                  </p>
+                  <p>
+                    This component is a React Server Component. Close with the × button or click
+                    outside.
+                  </p>
+                </div>
               </Modal>
             </div>
           </div>
