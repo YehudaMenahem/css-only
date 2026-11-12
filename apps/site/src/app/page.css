@@ -32,6 +32,16 @@
     gap: var(--space-sm);
   }
 
+  .modal-demo {
+    display: grid;
+    gap: var(--space-sm);
+  }
+
+  .modal-demo p {
+    color: var(--color-text-dim);
+    line-height: var(--line-height-relaxed);
+  }
+
   /* Buttons */
   .btn {
     display: inline-flex;
