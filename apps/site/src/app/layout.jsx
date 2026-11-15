@@ -29,7 +29,11 @@ export default function RootLayout({ children }) {
                     <a href="/features/view-transitions">Features</a>
                   </li>
                   <li>
-                    <a href="https://github.com" target="_blank" rel="noopener">
+                    <a
+                      href="https://github.com/YehudaMenahem/css-only"
+                      target="_blank"
+                      rel="noopener"
+                    >
                       Source
                     </a>
                   </li>

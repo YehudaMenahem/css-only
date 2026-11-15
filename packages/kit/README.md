@@ -8,7 +8,7 @@ A component library for React applications where components achieve interactivit
 
 ### Key Features
 
-- **Zero client-side JavaScript** — no useState, useEffect, or event handlers
+- **Adds zero client-side JavaScript** — no useState, useEffect, or event handlers. The app that renders a component still ships its own runtime.
 - **React Server Component compatible** — works in Next.js App Router without "use client"
 - **Cascade layers** — all styles shipped in @layer for easy theming
 - **Per-component CSS imports** — import only what you use

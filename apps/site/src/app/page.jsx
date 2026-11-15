@@ -80,11 +80,11 @@ export default function HomePage() {
                 triggerClassName="btn btn-primary"
               >
                 <div className="modal-demo">
-                  <h2>This modal uses zero JavaScript</h2>
+                  <h2>This modal adds zero JavaScript</h2>
                   <p>
                     It&apos;s powered by <code>commandfor</code> + <code>command</code> attributes
                     and <code>&lt;dialog closedby&gt;</code>. No useState, no event handlers, no
-                    &quot;use client&quot;.
+                    &quot;use client&quot;. Next.js still ships its own runtime.
                   </p>
                   <p>
                     This component is a React Server Component. Close with the × button or click
