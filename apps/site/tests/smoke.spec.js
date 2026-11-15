@@ -51,3 +51,90 @@ test('useState dialog opens after hydration', async ({ page }) => {
   await dialog.getByRole('button', { name: 'Close' }).click()
   await expect(dialog).toBeHidden()
 })
+
+test('scroll animations page shows both demos', async ({ page }) => {
+  await page.goto('/features/scroll-animations')
+  await expect(page).toHaveTitle('Scroll Animations | CSS-Only Showcase')
+  await expect(page.getByRole('heading', { level: 1, name: 'Scroll Animations' })).toBeVisible()
+  await expect(page.getByRole('region', { name: 'CSS scroll timeline' })).toBeVisible()
+  await expect(page.getByRole('region', { name: 'JavaScript scroll listener' })).toBeVisible()
+})
+
+test('css scroll timeline runs without JavaScript', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false })
+  const page = await context.newPage()
+  await page.goto('/features/scroll-animations')
+
+  const scroller = page.getByRole('region', { name: 'CSS scroll timeline' })
+  const bar = scroller.locator('.scroll-demo-bar')
+  await expect(scroller.getByText('Readable either way')).toBeVisible()
+
+  const before = await bar.evaluate(
+    (el) => el.ownerDocument.defaultView.getComputedStyle(el).transform
+  )
+  await scroller.evaluate((el) => {
+    el.scrollTop = el.scrollHeight
+  })
+  await expect
+    .poll(async () =>
+      bar.evaluate((el) => el.ownerDocument.defaultView.getComputedStyle(el).transform)
+    )
+    .not.toBe(before)
+
+  await context.close()
+})
+
+test('reduced motion keeps scroll demos still', async ({ browser }) => {
+  const context = await browser.newContext({ reducedMotion: 'reduce' })
+  const page = await context.newPage()
+  await page.goto('/features/scroll-animations')
+
+  const css = page.getByRole('region', { name: 'CSS scroll timeline' })
+  const card = css.locator('.scroll-demo-card').first()
+  await expect(card).toHaveCSS('animation-name', 'none')
+  await expect(card).toHaveCSS('opacity', '1')
+  const timeline = await card.evaluate(
+    (el) => el.ownerDocument.defaultView.getComputedStyle(el).animationTimeline
+  )
+  if (timeline.includes('view') || timeline.includes('scroll')) {
+    throw new Error('reduced motion kept a scroll timeline: ' + timeline)
+  }
+
+  const transform = await card.evaluate(
+    (el) => el.ownerDocument.defaultView.getComputedStyle(el).transform
+  )
+  await css.evaluate((el) => {
+    el.scrollTop = el.scrollHeight
+  })
+  await expect
+    .poll(async () =>
+      card.evaluate((el) => el.ownerDocument.defaultView.getComputedStyle(el).transform)
+    )
+    .toBe(transform)
+
+  const js = page.locator('.scroll-demo-js')
+  await expect(js).toHaveAttribute('data-motion', 'reduce')
+  await expect(js.locator('.scroll-demo-card').last()).toHaveCSS('opacity', '1')
+
+  await context.close()
+})
+
+test('javascript scroll listener follows the box after hydration', async ({ page }) => {
+  await page.goto('/features/scroll-animations')
+  const demo = page.locator('.scroll-demo-js')
+  await expect(demo).toHaveAttribute('data-motion', 'allow')
+
+  const scroller = page.getByRole('region', { name: 'JavaScript scroll listener' })
+  const bar = scroller.locator('.scroll-demo-bar')
+  const before = await bar.evaluate(
+    (el) => el.ownerDocument.defaultView.getComputedStyle(el).transform
+  )
+  await scroller.evaluate((el) => {
+    el.scrollTop = el.scrollHeight
+  })
+  await expect
+    .poll(async () =>
+      bar.evaluate((el) => el.ownerDocument.defaultView.getComputedStyle(el).transform)
+    )
+    .not.toBe(before)
+})
