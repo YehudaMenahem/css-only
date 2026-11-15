@@ -6,3 +6,17 @@
 - One logical change per PR, one self-contained commit per step. Conventional Commits.
 - Before opening a PR: lint, typecheck and build must pass.
 - Everything in the repo is in English.
+
+## CSS principles
+
+Showcasing modern CSS is the point of this project.
+
+- Prefer the newest native CSS/HTML that fits the job over JavaScript or older techniques.
+- Progressive enhancement: the page must stay usable in all current major browsers. Use Baseline features for core layout; put newer features behind @supports with a fallback.
+- Check support (MDN / Can I Use) before using a feature, and mention the fallback in the PR description.
+
+## CSS-only rule
+
+- Kit components and the "after" demos must be CSS/HTML-only: no useState, useEffect, event handlers or "use client". They must work as React Server Components.
+- Exceptions: the "before" demos (JavaScript on purpose, for comparison) and any polyfill I approve.
+- If a feature can't be done CSS-only, stop and ask — don't fall back to JavaScript on your own.
