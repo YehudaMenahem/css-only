@@ -1,0 +1,109 @@
+@layer components {
+  .anchor-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+    text-align: center;
+  }
+
+  .anchor-demo-note {
+    max-width: 28rem;
+    color: var(--color-text-dimmer);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .note-copy {
+    color: var(--color-text-dim);
+  }
+
+  .demo-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-surface-elevated);
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .demo-trigger:hover {
+    border-color: var(--color-accent);
+  }
+
+  .demo-trigger:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 3px;
+  }
+
+  .demo-trigger-accent {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  .demo-trigger-accent:hover {
+    background: var(--color-accent-dim);
+    border-color: var(--color-accent-dim);
+  }
+
+  .note-popover {
+    width: min(18rem, calc(100vw - 2rem));
+    padding: var(--space-sm);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    background: var(--color-surface-elevated);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    text-align: start;
+    box-shadow: 0 16px 40px rgb(0 0 0 / 45%);
+  }
+
+  .measured-popover {
+    position: fixed;
+    z-index: 200;
+    margin: 0;
+    visibility: hidden;
+  }
+
+  .measured-popover[data-placed='true'] {
+    visibility: visible;
+  }
+
+  /*
+   * The site reset sets margin: 0 on every element, which removes the
+   * user-agent margin: auto that centers a popover. Restore that centering
+   * so a browser without anchor positioning still opens the note on screen.
+   */
+  .anchored-popover {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    margin: 0;
+  }
+
+  @supports (anchor-name: --anchor-note) and (position-anchor: --anchor-note) and
+    (position-area: block-start) and (position-try-fallbacks: flip-block) {
+    .anchored-trigger {
+      anchor-name: --anchor-note;
+    }
+
+    .anchored-popover {
+      position-anchor: --anchor-note;
+      position-area: block-start;
+      position-try-fallbacks: flip-block;
+      inset: auto;
+      translate: none;
+      margin-block: 0.5rem;
+      margin-inline: 0;
+    }
+  }
+}

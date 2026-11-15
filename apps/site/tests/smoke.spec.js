@@ -72,3 +72,54 @@ test('useState dialog opens after hydration', async ({ page }) => {
   await dialog.getByRole('button', { name: 'Close' }).click()
   await expect(dialog).toBeHidden()
 })
+
+test('anchored popover opens from HTML and stays on the button', async ({ page }) => {
+  await page.goto('/features/anchor-positioning')
+
+  const open = page.getByRole('button', { name: 'Open with HTML' })
+  const popover = page.locator('#anchor-note')
+
+  await open.click()
+  await expect(popover).toBeVisible()
+
+  const buttonBox = await open.boundingBox()
+  const popoverBox = await popover.boundingBox()
+  expect(buttonBox).not.toBeNull()
+  expect(popoverBox).not.toBeNull()
+  if (buttonBox && popoverBox) {
+    const gap = buttonBox.y - (popoverBox.y + popoverBox.height)
+    expect(gap).toBeGreaterThan(-1)
+    expect(gap).toBeLessThan(24)
+    const buttonCenter = buttonBox.x + buttonBox.width / 2
+    const popoverCenter = popoverBox.x + popoverBox.width / 2
+    expect(Math.abs(buttonCenter - popoverCenter)).toBeLessThan(24)
+  }
+
+  await page.keyboard.press('Escape')
+  await expect(popover).toBeHidden()
+})
+
+test('measured popover tracks the button after hydration', async ({ page }) => {
+  await page.goto('/features/anchor-positioning')
+
+  const open = page.getByRole('button', { name: 'Open with JavaScript' })
+  const popover = page.locator('#measured-note')
+
+  await expect(async () => {
+    if (!(await popover.isVisible())) await open.click()
+    await expect(popover).toBeVisible()
+  }).toPass()
+
+  const buttonBox = await open.boundingBox()
+  const popoverBox = await popover.boundingBox()
+  expect(buttonBox).not.toBeNull()
+  expect(popoverBox).not.toBeNull()
+  if (buttonBox && popoverBox) {
+    const gap = buttonBox.y - (popoverBox.y + popoverBox.height)
+    expect(gap).toBeGreaterThan(-1)
+    expect(gap).toBeLessThan(24)
+  }
+
+  await page.keyboard.press('Escape')
+  await expect(popover).toBeHidden()
+})
