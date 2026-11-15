@@ -1,8 +1,8 @@
-import { FeatureTemplate } from '@/components/FeatureTemplate'
+import { ComingSoon } from '@/components/ComingSoon'
 
 export default function SiblingFunctionsPage() {
   return (
-    <FeatureTemplate
+    <ComingSoon
       title="Sibling Index & Count"
       before="style={{'--i': index}} in .map()"
       after="sibling-index() / sibling-count()"

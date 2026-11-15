@@ -1,8 +1,8 @@
-import { FeatureTemplate } from '@/components/FeatureTemplate'
+import { ComingSoon } from '@/components/ComingSoon'
 
 export default function CustomSelectPage() {
   return (
-    <FeatureTemplate
+    <ComingSoon
       title="Customizable Select"
       before="react-select"
       after="appearance: base-select"
