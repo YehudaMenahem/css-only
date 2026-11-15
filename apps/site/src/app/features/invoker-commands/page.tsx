@@ -48,14 +48,9 @@ export function StatefulDialog({ id, trigger, children }: StatefulDialogProps) {
       <button type="button" className="demo-trigger" onClick={() => setOpen(true)}>
         {trigger}
       </button>
-      <dialog ref={dialogRef} id={id} onClose={() => setOpen(false)}>
-        <div className="modal-content">{children}</div>
-        <button
-          type="button"
-          className="modal-close"
-          aria-label="Close"
-          onClick={() => setOpen(false)}
-        >
+      <dialog ref={dialogRef} id={id} className="state-dialog" onClose={() => setOpen(false)}>
+        {children}
+        <button type="button" aria-label="Close" onClick={() => setOpen(false)}>
           ×
         </button>
       </dialog>

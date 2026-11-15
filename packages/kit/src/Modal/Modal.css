@@ -27,16 +27,18 @@
   /*
    * Scoped to this component. The site reset sets margin: 0 on every element,
    * which removes the user-agent margin: auto that centers a modal dialog.
-   * top/left + translate keeps the hit target on the panel. inset: 0 with an
-   * auto height stretches hit testing over the viewport, so backdrop clicks
-   * never dismiss the dialog.
+   * inset: 50% auto auto 50% is top/left 50% with right/bottom auto, plus
+   * translate: -50% -50%, so the hit target stays on the panel. inset: 0
+   * with an auto height stretches hit testing over the viewport, so backdrop
+   * clicks never dismiss the dialog.
+   * Do not also set transform. Lightning CSS drops the translate property when
+   * transform is present, and the panel's top-left corner stays on the
+   * viewport center. The open transition is opacity only, so translate is the
+   * only translation the page build has to keep.
    */
   dialog.modal {
     position: fixed;
-    inset: auto;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
+    inset: 50% auto auto 50%;
     width: min(var(--modal-max-width), calc(100vw - 2rem));
     height: fit-content;
     max-height: calc(100dvh - 2rem);
@@ -50,23 +52,20 @@
     box-shadow: var(--modal-glow);
     backdrop-filter: blur(var(--modal-blur));
     opacity: 0;
-    transform: translateY(0.75rem);
+    translate: -50% -50%;
     transition:
       opacity 200ms ease,
-      transform 200ms ease,
       overlay 200ms ease allow-discrete,
       display 200ms ease allow-discrete;
   }
 
   dialog.modal[open] {
     opacity: 1;
-    transform: translateY(0);
   }
 
   @starting-style {
     dialog.modal[open] {
       opacity: 0;
-      transform: translateY(0.75rem);
     }
   }
 
@@ -84,14 +83,14 @@
 }
 
 @layer kit.components {
-  .modal-content {
+  dialog.modal .modal-content {
     padding: var(--modal-padding);
     padding-right: calc(var(--modal-padding) + 1.75rem);
     overflow-y: auto;
     max-height: calc(100dvh - 8rem);
   }
 
-  .modal-close {
+  dialog.modal .modal-close {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -116,19 +115,19 @@
   }
 
   @supports (corner-shape: squircle) {
-    .modal-close {
+    dialog.modal .modal-close {
       border-radius: var(--modal-chip-radius-squircle);
       corner-shape: squircle;
     }
   }
 
-  .modal-close:hover {
+  dialog.modal .modal-close:hover {
     background: rgba(255, 255, 255, 0.14);
     border-color: var(--modal-close-hover);
     color: var(--modal-close-hover);
   }
 
-  .modal-close:focus-visible {
+  dialog.modal .modal-close:focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 2px;
   }
