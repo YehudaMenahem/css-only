@@ -1,0 +1,142 @@
+@layer components {
+  .scroll-demo-block {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    gap: var(--space-sm);
+    width: 100%;
+  }
+
+  .scroll-demo-scroller {
+    height: 18rem;
+    overflow: hidden auto;
+    overscroll-behavior: contain;
+    scrollbar-color: var(--color-border) transparent;
+    scrollbar-gutter: stable;
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    background: var(--color-bg);
+
+    &:focus-visible {
+      outline: 2px solid var(--color-text);
+      outline-offset: 3px;
+    }
+  }
+
+  .scroll-demo-progress {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    height: 0.25rem;
+    background: var(--color-border);
+  }
+
+  .scroll-demo-css .scroll-demo-progress,
+  .scroll-demo-js .scroll-demo-progress {
+    display: none;
+  }
+
+  .scroll-demo-bar {
+    display: block;
+    height: 100%;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  .scroll-demo-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+    padding-bottom: 12rem;
+  }
+
+  .scroll-demo-card {
+    padding: var(--space-sm);
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+  }
+
+  .scroll-demo-kicker {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--color-accent);
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .scroll-demo-card p {
+    color: var(--color-text-dim);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .scroll-demo-note {
+    color: var(--color-text-dimmer);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .scroll-demo-js[data-motion='allow'] .scroll-demo-progress {
+    display: block;
+  }
+
+  @keyframes scroll-demo-grow {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes scroll-demo-rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* auto fills the scroll range. A time duration can shift view(). */
+  @supports (animation-timeline: scroll()) and (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .scroll-demo-css .scroll-demo-progress {
+        display: block;
+      }
+
+      .scroll-demo-css .scroll-demo-bar {
+        animation-name: scroll-demo-grow;
+        animation-duration: auto;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-timeline: scroll(nearest block);
+      }
+
+      .scroll-demo-css .scroll-demo-card {
+        animation-name: scroll-demo-rise;
+        animation-duration: auto;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 40%;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-demo-css .scroll-demo-bar,
+    .scroll-demo-css .scroll-demo-card {
+      animation: none;
+      animation-timeline: none;
+    }
+  }
+}
