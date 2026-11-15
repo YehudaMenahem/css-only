@@ -37,6 +37,27 @@ test('invoker dialog opens and closes from HTML', async ({ page }) => {
   await expect(dialog).toBeHidden()
 })
 
+const unfinishedFeatures = [
+  '/features/view-transitions',
+  '/features/custom-select',
+  '/features/css-carousel',
+  '/features/sibling-functions',
+]
+
+for (const path of unfinishedFeatures) {
+  test(`${path} shows a coming soon state`, async ({ page }) => {
+    await page.goto(path)
+
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+    await expect(page.getByText('Coming soon', { exact: true })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Back to the showcase' })).toHaveAttribute(
+      'href',
+      '/'
+    )
+    await expect(page.getByText(/TODO/)).toHaveCount(0)
+  })
+}
+
 test('useState dialog opens after hydration', async ({ page }) => {
   await page.goto('/features/invoker-commands')
 

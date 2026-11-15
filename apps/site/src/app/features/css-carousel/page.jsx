@@ -1,8 +1,8 @@
-import { FeatureTemplate } from '@/components/FeatureTemplate'
+import { ComingSoon } from '@/components/ComingSoon'
 
 export default function CSSCarouselPage() {
   return (
-    <FeatureTemplate
+    <ComingSoon
       title="CSS Carousel"
       before="Embla / Swiper"
       after="::scroll-button + ::scroll-marker"

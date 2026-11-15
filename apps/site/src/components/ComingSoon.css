@@ -1,0 +1,103 @@
+@layer components {
+  .coming-soon {
+    padding-block: var(--space-3xl) var(--space-2xl);
+  }
+
+  .coming-soon-inner {
+    max-width: var(--content-max);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .coming-soon-kicker {
+    margin-bottom: var(--space-md);
+  }
+
+  .coming-soon-title {
+    margin-bottom: var(--space-md);
+    font-size: clamp(var(--font-size-xl), 6vw, var(--font-size-3xl));
+    font-variation-settings: 'wdth' 115;
+    overflow-wrap: break-word;
+
+    /* Baseline. Older browsers keep the initial value, wrap. */
+    text-wrap: balance;
+  }
+
+  .coming-soon-description {
+    margin-bottom: var(--space-lg);
+    color: var(--color-text-dim);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .coming-soon-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin: 0 0 var(--space-lg);
+  }
+
+  .coming-soon-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .coming-soon-meta dt {
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-dimmer);
+  }
+
+  .coming-soon-meta dd {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .coming-soon-meta code {
+    overflow-wrap: anywhere;
+  }
+
+  .coming-soon-note {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    color: var(--color-text-dim);
+    line-height: var(--line-height-relaxed);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+
+  .coming-soon-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm) var(--space-md);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-bg);
+    background: var(--color-accent);
+    border-radius: 0.5rem;
+    transition:
+      background var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  .coming-soon-back:hover {
+    color: var(--color-bg);
+    background: var(--color-accent-dim);
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .coming-soon-back {
+      transition: background var(--transition-base);
+    }
+
+    .coming-soon-back:hover {
+      transform: none;
+    }
+  }
+}
