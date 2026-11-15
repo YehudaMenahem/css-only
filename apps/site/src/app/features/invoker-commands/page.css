@@ -20,6 +20,28 @@
     color: var(--color-text-dim);
   }
 
+  /*
+   * The plain JS dialog has no kit class. The site reset clears the user-agent
+   * auto margin, and dialog:modal still sets inset: 0, so the panel stretches
+   * across the top of the viewport. inset 50% auto auto 50% (top/left 50%,
+   * right/bottom auto) plus a transform keeps the border box on the panel.
+   */
+  dialog.state-dialog {
+    position: fixed;
+    inset: 50% auto auto 50%;
+    width: min(32rem, calc(100vw - 2rem));
+    max-height: calc(100dvh - 2rem);
+    margin: 0;
+    overflow: auto;
+    transform: translate(-50%, -50%);
+  }
+
+  dialog.state-dialog button {
+    margin-top: var(--space-sm);
+    padding: 0.35rem 0.75rem;
+    cursor: pointer;
+  }
+
   .demo-trigger {
     display: inline-flex;
     align-items: center;
