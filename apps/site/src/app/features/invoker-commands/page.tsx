@@ -140,10 +140,10 @@ export default function InvokerCommandsPage() {
       afterCode={afterCode}
       costs={{
         beforeSize: 'Radix 12.9 KB',
-        afterSize: '0 KB JS',
+        afterSize: '0 KB added',
         beforeINP: 'after hydration',
         afterINP: 'no React work',
-        note: '12.9 KB is Bundlephobia’s minified-and-gzipped size for @radix-ui/react-dialog 1.3.1, measured November 2026. It is a synthetic default-entry bundle, so an app’s real output will differ, and it is not the size of the useState demo on the left. That demo is smaller and still has to be a Client Component. 0 KB is the open and close behavior only: Modal ships no client JavaScript, and the modal stylesheet still downloads. INP was not lab-measured on this page. The invoker click never enters React. The useState click runs only after hydration.',
+        note: '12.9 KB is Bundlephobia’s minified-and-gzipped size for @radix-ui/react-dialog 1.3.1, measured November 2026. It is a synthetic default-entry bundle, so an app’s real output will differ, and it is not the size of the useState demo on the left. That demo is smaller and still has to be a Client Component. 0 KB added is the Modal component only: it adds no client JavaScript. Next.js still ships its own runtime, and the modal stylesheet still downloads. INP was not lab-measured on this page. The invoker click never enters React. The useState click runs only after hydration.',
       }}
       browserSupport={{
         chrome: '135+',

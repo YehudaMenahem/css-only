@@ -1,8 +1,8 @@
-import { FeatureTemplate } from '@/components/FeatureTemplate'
+import { ComingSoon } from '@/components/ComingSoon'
 
 export default function ViewTransitionsPage() {
   return (
-    <FeatureTemplate
+    <ComingSoon
       title="Cross-Document View Transitions"
       before="Framer Motion"
       after="@view-transition"
