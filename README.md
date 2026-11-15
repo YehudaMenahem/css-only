@@ -184,7 +184,7 @@ The Modal component uses HTML's `commandfor`/`command` attributes and `<dialog c
 
 - **Dark, editorial, and edgy** — big variable display type, one bold accent color (#ff3366)
 - **Generous negative space** with subtle grain texture
-- **Minimal and tasteful** — understated branding (small "+0 JS" badge, footer credit line)
+- **Minimal and tasteful** — understated branding (small "0 KB JS" badge, footer credit line)
 
 ### Technical Principles
 
