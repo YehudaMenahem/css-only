@@ -6,7 +6,7 @@ Modern CSS replacing JavaScript in React components: a showcase of measured trad
 
 A showcase site aimed at senior frontend developers and technical decision-makers at React-first companies. The premise: you don't need to rewrite your entire application to reduce JavaScript—just swap individual components where the performance trade-off makes sense.
 
-Each feature demonstrates a common React pattern that relies on JavaScript libraries and shows how modern CSS can achieve the same behavior with zero client-side JS. Every comparison includes measured costs (bundle size, main-thread time, INP) and honest assessments of browser support and complexity.
+Each feature demonstrates a common React pattern that relies on JavaScript libraries and shows how modern CSS can achieve the same behavior. The components add zero client-side JavaScript. Next.js still ships its own runtime. Every comparison includes measured costs (bundle size, main-thread time, INP) and honest assessments of browser support and complexity.
 
 ## Tech Stack
 
@@ -170,7 +170,7 @@ export default function MyPage() {
   return (
     <Modal id="example" trigger="Open Modal">
       <h2>Modal Title</h2>
-      <p>This modal uses zero JavaScript.</p>
+      <p>This modal adds zero JavaScript.</p>
     </Modal>
   )
 }
@@ -184,7 +184,7 @@ The Modal component uses HTML's `commandfor`/`command` attributes and `<dialog c
 
 - **Dark, editorial, and edgy** — big variable display type, one bold accent color (#ff3366)
 - **Generous negative space** with subtle grain texture
-- **Minimal and tasteful** — understated branding (small "0 KB JS" badge, footer credit line)
+- **Minimal and tasteful** — understated branding (small "+0 JS" badge, footer credit line)
 
 ### Technical Principles
 
