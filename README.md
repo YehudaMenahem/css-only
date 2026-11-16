@@ -1,5 +1,7 @@
 # CSS-Only Showcase
 
+Built by Yehuda Menahem · [LinkedIn](https://www.linkedin.com/in/yehuda-menahem-49022330/)
+
 Modern CSS replacing JavaScript in React components, with honest, measured trade-offs.
 
 **Live:** [css-only-two.vercel.app](https://css-only-two.vercel.app)
@@ -29,10 +31,8 @@ View Transitions, Custom Select, CSS Carousel, and Sibling Functions are coming 
 - Playwright
 - GitHub Actions CI
 - Vercel
-
-## How it's built
-
-Written with AI coding agents, under the rules in [AGENTS.md](AGENTS.md). The technical choices, and why, are in [docs/DECISIONS.md](docs/DECISIONS.md).
+- AI coding agents, working under [AGENTS.md](AGENTS.md)
+- Technical decisions: [docs/DECISIONS.md](docs/DECISIONS.md)
 
 ## Run locally
 
