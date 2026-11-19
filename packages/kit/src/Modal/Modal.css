@@ -14,7 +14,8 @@
     --modal-radius: 1.5rem;
     --modal-radius-squircle: 2.75rem;
     --modal-max-width: 36rem;
-    --modal-blur: 20px;
+    /* Single blur, on ::backdrop only. A second blur on the panel is nearly invisible. */
+    --modal-blur: 8px;
     --modal-glow:
       0 0 0 1px rgba(255, 51, 102, 0.18), 0 24px 80px rgba(0, 0, 0, 0.45),
       0 0 80px rgba(255, 51, 102, 0.12);
@@ -35,6 +36,10 @@
    * transform is present, and the panel's top-left corner stays on the
    * viewport center. The open transition is opacity only, so translate is the
    * only translation the page build has to keep.
+   * The panel keeps a translucent background and does not blur. Blurring the
+   * panel and the backdrop together doubled the paint for a look the backdrop
+   * blur already provides. Closed dialogs set no transition, so the close
+   * snaps off. The fade is only on [open].
    */
   dialog.modal {
     position: fixed;
@@ -50,17 +55,23 @@
     background: var(--modal-bg);
     color: var(--modal-text);
     box-shadow: var(--modal-glow);
-    backdrop-filter: blur(var(--modal-blur));
     opacity: 0;
     translate: -50% -50%;
-    transition:
-      opacity 200ms ease,
-      overlay 200ms ease allow-discrete,
-      display 200ms ease allow-discrete;
+    transition: none;
   }
 
   dialog.modal[open] {
     opacity: 1;
+    transition:
+      opacity 100ms ease-out,
+      overlay 100ms ease-out allow-discrete,
+      display 100ms ease-out allow-discrete;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    dialog.modal[open] {
+      transition: none;
+    }
   }
 
   @starting-style {
