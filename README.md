@@ -46,3 +46,5 @@ pnpm test
 ```
 
 `pnpm dev` serves the site at [http://localhost:3000](http://localhost:3000). The first `pnpm test` needs Chromium: `pnpm --filter site exec playwright install chromium`.
+
+License: MIT
