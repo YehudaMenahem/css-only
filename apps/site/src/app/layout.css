@@ -57,6 +57,60 @@
     color: var(--color-accent);
   }
 
+  /*
+   * Mobile: keep the logo + badge on one unbroken row, move nav links
+   * onto a second row so nothing overflows. Desktop rules above are unchanged.
+   * Breakpoint is below the width where the desktop header starts to overflow
+   * (~570px with the longer "0 KB component JS" badge).
+   */
+  @media (max-width: 40rem) {
+    .site-header {
+      padding-block: var(--space-sm);
+    }
+
+    .site-header .container {
+      --container-padding: var(--space-sm);
+    }
+
+    .nav {
+      flex-wrap: wrap;
+      align-items: center;
+      column-gap: var(--space-sm);
+      row-gap: var(--space-xs);
+    }
+
+    .logo {
+      flex: 1 1 auto;
+      gap: var(--space-xs);
+      font-size: var(--font-size-base);
+      min-width: 0;
+    }
+
+    .logo-text {
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      flex: 1 1 100%;
+      justify-content: flex-start;
+      gap: var(--space-sm);
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+      padding-block: var(--space-xs);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-links a {
+      transition: none;
+    }
+  }
+
   .site-main {
     flex: 1;
   }
@@ -75,5 +129,18 @@
 
   .footer-text a {
     color: var(--color-text-dim);
+  }
+}
+
+/* Badge lives in @layer components (globals.css), which wins over layout.
+   Keep header-badge tweaks in the same layer so they apply. */
+@layer components {
+  @media (max-width: 40rem) {
+    .site-header .logo .badge {
+      flex-shrink: 0;
+      white-space: nowrap;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+    }
   }
 }
