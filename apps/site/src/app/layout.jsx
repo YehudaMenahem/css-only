@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
             <div className="container">
               <nav className="nav">
                 <a href="/" className="logo">
-                  <span className="badge badge-accent">0 KB component JS</span>
+                  <span className="badge badge-accent">Zero-JS components</span>
                   <span className="logo-text">CSS-Only</span>
                 </a>
                 <ul className="nav-links">
