@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . && stylelint \"**/*.css\"",
+    "typecheck": "next typegen && tsc --noEmit",
     "test": "playwright test",
     "test:ci": "playwright test"
   },
