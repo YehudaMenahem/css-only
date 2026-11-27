@@ -173,6 +173,7 @@ export default function ScrollAnimationsPage() {
       title="Scroll Animations"
       before="GSAP ScrollTrigger / Motion useScroll"
       after="scroll() + view()"
+      lead="Drive scroll motion from CSS timelines — no scroll listener."
       description="A progress bar and a reveal tied to a scroller, with the timeline in CSS. The same motion as a scroll listener, GSAP ScrollTrigger, or Motion useScroll, without a client component."
       beforeDemo={
         <div className="scroll-demo-block">

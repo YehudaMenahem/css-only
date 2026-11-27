@@ -97,6 +97,7 @@ export default function InvokerCommandsPage() {
       title="Modal & Dialog"
       before="useState / Radix Dialog"
       after="commandfor + command + closedby"
+      lead="Open and close a dialog from HTML — no client component."
       description="Open, close, focus, and Escape, with the behavior in the HTML. The same job as a useState modal or Radix Dialog, without a client component."
       beforeDemo={
         <div className="dialog-demo">

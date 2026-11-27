@@ -181,6 +181,7 @@ export default function AnchorPositioningPage() {
       title="Anchor Positioning"
       before="Floating UI / Radix Tooltip"
       after="anchor-name + popover"
+      lead="Anchor a popover to its trigger in CSS — no measuring in JavaScript."
       description="Open a popover on its trigger without measuring either box in JavaScript. The same job as Floating UI or a Radix tooltip, without a client component."
       beforeDemo={
         <div className="anchor-demo">
