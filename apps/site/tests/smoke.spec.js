@@ -5,6 +5,49 @@ test('home page loads', async ({ page }) => {
   await expect(page).toHaveTitle(/CSS-Only Showcase/)
 })
 
+test('feature page code blocks collapse on mobile and copy', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 })
+  await page.goto('/features/invoker-commands')
+
+  const afterPanel = page.locator('.comparison-panel-after')
+  const beforePanel = page.locator('.comparison-panel-before')
+  const afterBox = await afterPanel.boundingBox()
+  const beforeBox = await beforePanel.boundingBox()
+  expect(afterBox).not.toBeNull()
+  expect(beforeBox).not.toBeNull()
+  if (afterBox && beforeBox) {
+    expect(afterBox.y).toBeLessThan(beforeBox.y)
+  }
+
+  await expect(page.locator('.feature-lead')).toBeVisible()
+  await expect(page.locator('.feature-description')).toBeHidden()
+
+  const codeBlock = afterPanel.locator('details.code-block')
+  await expect(codeBlock).not.toHaveAttribute('open', '')
+  await expect(codeBlock.locator('pre')).toBeHidden()
+
+  await codeBlock.locator('summary').click()
+  await expect(codeBlock).toHaveAttribute('open', '')
+  await expect(codeBlock.locator('pre')).toBeVisible()
+
+  await page.context().grantPermissions(['clipboard-read', 'clipboard-write'])
+  await codeBlock.getByRole('button', { name: 'Copy code' }).click()
+  await expect(codeBlock.getByRole('button', { name: 'Copied' })).toBeVisible()
+  const clipboard = await page.evaluate(() => navigator.clipboard.readText())
+  expect(clipboard.length).toBeGreaterThan(0)
+  expect(clipboard).toContain('css-only-kit')
+})
+
+test('feature page code stays visible on desktop', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await page.goto('/features/invoker-commands')
+
+  const codeBlock = page.locator('.comparison-panel-after details.code-block')
+  await expect(codeBlock.locator('pre')).toBeVisible()
+  await expect(page.locator('.feature-description')).toBeVisible()
+  await expect(page.locator('.feature-lead')).toBeHidden()
+})
+
 test('modal can be opened', async ({ page }) => {
   await page.goto('/')
 
