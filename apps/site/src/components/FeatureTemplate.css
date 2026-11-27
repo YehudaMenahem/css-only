@@ -142,12 +142,21 @@
     min-width: 0;
   }
 
+  /* Desktop block is the default; mobile details is shown under 40rem. */
+  .code-block-mobile {
+    display: none;
+  }
+
+  .code-toolbar,
   .code-summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-sm);
     margin-bottom: var(--space-xs);
+  }
+
+  .code-summary {
     cursor: pointer;
     list-style: none;
   }
@@ -156,27 +165,27 @@
     display: none;
   }
 
-  /* Fallback marker for browsers without ::marker / webkit support. */
-  .code-summary-label::before {
+  /* Fallback marker when disclosure list-style is unsupported. */
+  .code-block-mobile .code-summary-label::before {
     content: '▸ ';
     color: var(--color-text-dimmer);
   }
 
-  .code-block[open] > .code-summary .code-summary-label::before {
+  .code-block-mobile[open] > .code-summary .code-summary-label::before {
     content: '▾ ';
   }
 
   @supports (list-style-type: disclosure-closed) {
-    .code-summary {
+    .code-block-mobile > .code-summary {
       list-style-type: disclosure-closed;
       list-style-position: inside;
     }
 
-    .code-block[open] > .code-summary {
+    .code-block-mobile[open] > .code-summary {
       list-style-type: disclosure-open;
     }
 
-    .code-summary-label::before {
+    .code-block-mobile .code-summary-label::before {
       content: none;
     }
   }
@@ -380,30 +389,12 @@
       padding: var(--space-md);
       font-size: var(--font-size-base);
     }
-  }
 
-  /*
-   * Desktop: keep code visible without requiring an open attribute.
-   * UA styles hide non-summary children when details is closed; override that
-   * above 40rem so the layout matches today's always-visible code blocks.
-   */
-  @media (width > 40rem) {
-    .code-summary {
-      cursor: default;
+    .code-block-desktop {
+      display: none;
     }
 
-    .code-summary-label::before {
-      content: none;
-    }
-
-    @supports (list-style-type: disclosure-closed) {
-      .code-summary,
-      .code-block[open] > .code-summary {
-        list-style-type: none;
-      }
-    }
-
-    .code-block:not([open]) > :not(summary) {
+    .code-block-mobile {
       display: block;
     }
   }

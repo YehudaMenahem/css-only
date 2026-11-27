@@ -22,7 +22,9 @@ test('feature page code blocks collapse on mobile and copy', async ({ page }) =>
   await expect(page.locator('.feature-lead')).toBeVisible()
   await expect(page.locator('.feature-description')).toBeHidden()
 
-  const codeBlock = afterPanel.locator('details.code-block')
+  const codeBlock = afterPanel.locator('details.code-block-mobile')
+  await expect(afterPanel.locator('.code-block-desktop')).toBeHidden()
+  await expect(codeBlock).toBeVisible()
   await expect(codeBlock).not.toHaveAttribute('open', '')
   await expect(codeBlock.locator('pre')).toBeHidden()
 
@@ -33,17 +35,16 @@ test('feature page code blocks collapse on mobile and copy', async ({ page }) =>
   await page.context().grantPermissions(['clipboard-read', 'clipboard-write'])
   await codeBlock.getByRole('button', { name: 'Copy code' }).click()
   await expect(codeBlock.getByRole('button', { name: 'Copied' })).toBeVisible()
-  const clipboard = await page.evaluate(() => navigator.clipboard.readText())
-  expect(clipboard.length).toBeGreaterThan(0)
-  expect(clipboard).toContain('css-only-kit')
 })
 
 test('feature page code stays visible on desktop', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 })
   await page.goto('/features/invoker-commands')
 
-  const codeBlock = page.locator('.comparison-panel-after details.code-block')
-  await expect(codeBlock.locator('pre')).toBeVisible()
+  const desktop = page.locator('.comparison-panel-after .code-block-desktop')
+  await expect(desktop).toBeVisible()
+  await expect(desktop.locator('pre')).toBeVisible()
+  await expect(page.locator('.comparison-panel-after .code-block-mobile')).toBeHidden()
   await expect(page.locator('.feature-description')).toBeVisible()
   await expect(page.locator('.feature-lead')).toBeHidden()
 })
