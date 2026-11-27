@@ -226,7 +226,7 @@ export default function AnchorPositioningPage() {
       afterCode={afterCode}
       costs={{
         beforeSize: 'Radix 18.8 KB',
-        afterSize: '0 KB JS',
+        afterSize: '0 KB added',
         beforeINP: 'after hydration',
         afterINP: 'no React work',
         note: '18.8 KB is Bundlephobia’s minified-and-gzipped size for @radix-ui/react-tooltip 1.4.1, measured November 2026. It is a synthetic default-entry bundle, so an app’s real output will differ, and it is not the size of the measuring demo on the left. That demo is smaller and still has to be a Client Component. Radix Tooltip sits on Floating UI. @floating-ui/react 0.27.20 is 30.1 KB minified and gzipped on the same basis, for teams that call the positioning library themselves. 0 KB is the open, close, and placement behavior only: the popover is HTML and the coordinates are CSS, and the page stylesheet still downloads. INP was not lab-measured on this page. The popovertarget click never enters React. The measuring click runs only after hydration, and every scroll while the note is open writes a new position.',

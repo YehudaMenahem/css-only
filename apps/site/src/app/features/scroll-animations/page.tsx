@@ -221,7 +221,7 @@ export default function ScrollAnimationsPage() {
       afterCode={afterCode}
       costs={{
         beforeSize: 'GSAP 26.8 KB',
-        afterSize: '0 KB JS',
+        afterSize: '0 KB added',
         beforeINP: 'scroll listener',
         afterINP: 'no scroll JS',
         note: '26.8 KB is Bundlephobia’s minified-and-gzipped size for gsap 3.15.1, measured November 2026. The gzipped byte count is 27,434. It is a synthetic default-entry bundle of the GSAP core. ScrollTrigger is a separate import on top of that core, so a page that calls ScrollTrigger is larger, and an app’s real output will differ. It is not the size of the listener on the left. That demo is smaller and still has to be a Client Component. Motion’s default entry, motion 14.14.0, is 62.8 KB on the same basis, 64,323 gzipped bytes. Importing only useScroll tree-shakes below that default, and this page does not claim that smaller number. 0 KB is the scroll() and view() behavior only: the page ships no client JavaScript for the effect, and the stylesheet still downloads. INP was not lab-measured. The labels describe the scroll path. The listener reads layout and writes style on the main thread. The CSS timelines are not a JavaScript task.',
