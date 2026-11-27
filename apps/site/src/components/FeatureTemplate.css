@@ -13,6 +13,15 @@
     margin-bottom: var(--space-md);
   }
 
+  .feature-lead {
+    display: none;
+    text-align: center;
+    font-size: var(--font-size-base);
+    color: var(--color-text-dim);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-md);
+  }
+
   .feature-description {
     text-align: center;
     font-size: var(--font-size-lg);
@@ -93,11 +102,14 @@
   }
 
   .demo-label,
-  .code-label {
+  .code-summary-label {
     font-size: var(--font-size-xs);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--color-text-dimmer);
+  }
+
+  .demo-label {
     margin-bottom: var(--space-xs);
   }
 
@@ -126,7 +138,78 @@
     min-width: 0;
   }
 
-  .code-container pre {
+  .code-block {
+    min-width: 0;
+  }
+
+  .code-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xs);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .code-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Fallback marker for browsers without ::marker / webkit support. */
+  .code-summary-label::before {
+    content: '▸ ';
+    color: var(--color-text-dimmer);
+  }
+
+  .code-block[open] > .code-summary .code-summary-label::before {
+    content: '▾ ';
+  }
+
+  @supports (list-style-type: disclosure-closed) {
+    .code-summary {
+      list-style-type: disclosure-closed;
+      list-style-position: inside;
+    }
+
+    .code-block[open] > .code-summary {
+      list-style-type: disclosure-open;
+    }
+
+    .code-summary-label::before {
+      content: none;
+    }
+  }
+
+  .copy-code-button {
+    flex-shrink: 0;
+    padding: 0.25rem 0.625rem;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition:
+      color var(--transition-fast),
+      border-color var(--transition-fast),
+      background var(--transition-fast);
+  }
+
+  .copy-code-button:hover {
+    color: var(--color-text);
+    border-color: var(--color-text-dimmer);
+  }
+
+  .copy-code-button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .code-block pre {
     margin: 0;
   }
 
@@ -236,5 +319,98 @@
     background: var(--color-surface);
     border: 2px dashed var(--color-border);
     border-radius: 0.5rem;
+  }
+
+  /* Same mobile breakpoint as the site header (40rem). */
+  @media (width <= 40rem) {
+    .feature-page .section {
+      padding-block: var(--space-lg);
+    }
+
+    .feature-header {
+      padding-block: var(--space-md);
+    }
+
+    .feature-page-title {
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--space-sm);
+    }
+
+    .has-lead .feature-lead {
+      display: block;
+    }
+
+    .has-lead .feature-description {
+      display: none;
+    }
+
+    .feature-description {
+      font-size: var(--font-size-base);
+      margin-bottom: var(--space-md);
+    }
+
+    .feature-meta {
+      gap: var(--space-md);
+    }
+
+    /* Solution (After) first on small screens. */
+    .comparison-panel-after {
+      order: -1;
+    }
+
+    .meta-item-after {
+      order: -1;
+    }
+
+    .comparison-panel {
+      padding: var(--space-md);
+    }
+
+    .comparison-heading {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-heading {
+      margin-bottom: var(--space-md);
+      font-size: var(--font-size-xl);
+    }
+
+    .verdict-content {
+      padding: var(--space-md);
+      font-size: var(--font-size-base);
+    }
+  }
+
+  /*
+   * Desktop: keep code visible without requiring an open attribute.
+   * UA styles hide non-summary children when details is closed; override that
+   * above 40rem so the layout matches today's always-visible code blocks.
+   */
+  @media (width > 40rem) {
+    .code-summary {
+      cursor: default;
+    }
+
+    .code-summary-label::before {
+      content: none;
+    }
+
+    @supports (list-style-type: disclosure-closed) {
+      .code-summary,
+      .code-block[open] > .code-summary {
+        list-style-type: none;
+      }
+    }
+
+    .code-block:not([open]) > :not(summary) {
+      display: block;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .copy-code-button {
+      transition: none;
+    }
   }
 }
