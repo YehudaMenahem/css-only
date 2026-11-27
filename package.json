@@ -2,6 +2,7 @@
   "name": "css-only-showcase",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "description": "Modern CSS replacing JavaScript in React components: a showcase of measured trade-offs and a CSS-only React component kit",
   "scripts": {
     "dev": "pnpm --filter site dev",
