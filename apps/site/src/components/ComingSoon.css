@@ -23,6 +23,14 @@
     text-wrap: balance;
   }
 
+  .coming-soon-lead {
+    display: none;
+    margin-bottom: var(--space-md);
+    color: var(--color-text-dim);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+  }
+
   .coming-soon-description {
     margin-bottom: var(--space-lg);
     color: var(--color-text-dim);
@@ -89,6 +97,49 @@
     color: var(--color-bg);
     background: var(--color-accent-dim);
     transform: translateY(-2px);
+  }
+
+  /* Same mobile breakpoint as the site header (40rem). */
+  @media (width <= 40rem) {
+    .coming-soon {
+      padding-block: var(--space-xl) var(--space-lg);
+    }
+
+    .coming-soon-kicker {
+      margin-bottom: var(--space-sm);
+    }
+
+    .coming-soon-title {
+      margin-bottom: var(--space-sm);
+    }
+
+    .has-lead .coming-soon-lead {
+      display: block;
+    }
+
+    .has-lead .coming-soon-description {
+      display: none;
+    }
+
+    .coming-soon-description {
+      margin-bottom: var(--space-md);
+      font-size: var(--font-size-base);
+    }
+
+    .coming-soon-meta {
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    /* CSS solution (Uses) first on small screens. */
+    .coming-soon-meta-after {
+      order: -1;
+    }
+
+    .coming-soon-note {
+      margin-bottom: var(--space-md);
+      font-size: var(--font-size-sm);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

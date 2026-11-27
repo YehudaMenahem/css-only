@@ -9,25 +9,27 @@ import './ComingSoon.css'
  * @param {string} props.before - Name of the JS library being replaced
  * @param {string} props.after - Name of the CSS feature replacing it
  * @param {string} props.description - Description of what this feature does
+ * @param {string} [props.lead] - Shorter lead shown on small screens instead of description
  */
-export function ComingSoon({ title, before, after, description }) {
+export function ComingSoon({ title, before, after, description, lead }) {
   return (
-    <article className="coming-soon">
+    <article className={`coming-soon${lead ? ' has-lead' : ''}`}>
       <div className="container">
         <div className="coming-soon-inner">
           <p className="coming-soon-kicker">
             <span className="badge badge-accent">Coming soon</span>
           </p>
           <h1 className="coming-soon-title">{title}</h1>
+          {lead ? <p className="coming-soon-lead">{lead}</p> : null}
           <p className="coming-soon-description">{description}</p>
           <dl className="coming-soon-meta">
-            <div className="coming-soon-meta-item">
+            <div className="coming-soon-meta-item coming-soon-meta-before">
               <dt>Replaces</dt>
               <dd>
                 <code>{before}</code>
               </dd>
             </div>
-            <div className="coming-soon-meta-item">
+            <div className="coming-soon-meta-item coming-soon-meta-after">
               <dt>Uses</dt>
               <dd>
                 <code>{after}</code>

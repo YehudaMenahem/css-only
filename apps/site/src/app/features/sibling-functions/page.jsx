@@ -6,6 +6,7 @@ export default function SiblingFunctionsPage() {
       title="Sibling Index & Count"
       before="style={{'--i': index}} in .map()"
       after="sibling-index() / sibling-count()"
+      lead="Style by sibling index in CSS — no inline --i."
       description="Index-based styling without inline styles. Replace React's inline style pattern with CSS sibling-index() and sibling-count() functions."
     />
   )

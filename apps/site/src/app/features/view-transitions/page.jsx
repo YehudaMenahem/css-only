@@ -6,6 +6,7 @@ export default function ViewTransitionsPage() {
       title="Cross-Document View Transitions"
       before="Framer Motion"
       after="@view-transition"
+      lead="Page transitions with CSS — no Framer Motion."
       description="Page transitions without JavaScript using the View Transition API. Replace Framer Motion's page animations with CSS-driven cross-document transitions."
     />
   )

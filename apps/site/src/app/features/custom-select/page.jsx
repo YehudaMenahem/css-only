@@ -6,6 +6,7 @@ export default function CustomSelectPage() {
       title="Customizable Select"
       before="react-select"
       after="appearance: base-select"
+      lead="Style a native select in CSS — no react-select."
       description="Styled select dropdowns without heavy JavaScript components. Replace react-select with customizable native select using appearance: base-select and ::picker pseudo-elements."
     />
   )

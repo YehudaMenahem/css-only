@@ -5,6 +5,50 @@ test('home page loads', async ({ page }) => {
   await expect(page).toHaveTitle(/CSS-Only Showcase/)
 })
 
+test('feature page code blocks collapse on mobile and copy', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 })
+  await page.goto('/features/invoker-commands')
+
+  const afterPanel = page.locator('.comparison-panel-after')
+  const beforePanel = page.locator('.comparison-panel-before')
+  const afterBox = await afterPanel.boundingBox()
+  const beforeBox = await beforePanel.boundingBox()
+  expect(afterBox).not.toBeNull()
+  expect(beforeBox).not.toBeNull()
+  if (afterBox && beforeBox) {
+    expect(afterBox.y).toBeLessThan(beforeBox.y)
+  }
+
+  await expect(page.locator('.feature-lead')).toBeVisible()
+  await expect(page.locator('.feature-description')).toBeHidden()
+
+  const codeBlock = afterPanel.locator('details.code-block-mobile')
+  await expect(afterPanel.locator('.code-block-desktop')).toBeHidden()
+  await expect(codeBlock).toBeVisible()
+  await expect(codeBlock).not.toHaveAttribute('open', '')
+  await expect(codeBlock.locator('pre')).toBeHidden()
+
+  await codeBlock.locator('summary').click()
+  await expect(codeBlock).toHaveAttribute('open', '')
+  await expect(codeBlock.locator('pre')).toBeVisible()
+
+  await page.context().grantPermissions(['clipboard-read', 'clipboard-write'])
+  await codeBlock.getByRole('button', { name: 'Copy code' }).click()
+  await expect(codeBlock.getByRole('button', { name: 'Copied' })).toBeVisible()
+})
+
+test('feature page code stays visible on desktop', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await page.goto('/features/invoker-commands')
+
+  const desktop = page.locator('.comparison-panel-after .code-block-desktop')
+  await expect(desktop).toBeVisible()
+  await expect(desktop.locator('pre')).toBeVisible()
+  await expect(page.locator('.comparison-panel-after .code-block-mobile')).toBeHidden()
+  await expect(page.locator('.feature-description')).toBeVisible()
+  await expect(page.locator('.feature-lead')).toBeHidden()
+})
+
 test('modal can be opened', async ({ page }) => {
   await page.goto('/')
 

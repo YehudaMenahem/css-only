@@ -1,4 +1,5 @@
 import './FeatureTemplate.css'
+import { CodeBlock } from './CodeBlock'
 
 /**
  * Shared template for feature comparison pages
@@ -8,6 +9,7 @@ import './FeatureTemplate.css'
  * @param {string} props.before - Name of the JS library being replaced
  * @param {string} props.after - Name of the CSS feature replacing it
  * @param {string} props.description - Description of what this feature does
+ * @param {string} [props.lead] - Shorter lead shown on small screens instead of description
  * @param {React.ReactNode} [props.beforeDemo] - Live demo of the "before" approach
  * @param {React.ReactNode} [props.afterDemo] - Live demo of the "after" approach
  * @param {string} [props.beforeCode] - Code snippet for the "before" approach
@@ -30,6 +32,7 @@ export function FeatureTemplate({
   before,
   after,
   description,
+  lead,
   beforeDemo,
   afterDemo,
   beforeCode,
@@ -39,17 +42,18 @@ export function FeatureTemplate({
   verdict,
 }) {
   return (
-    <article className="feature-page">
+    <article className={`feature-page${lead ? ' has-lead' : ''}`}>
       <header className="feature-header section">
         <div className="container content-narrow">
           <h1 className="feature-page-title">{title}</h1>
+          {lead ? <p className="feature-lead">{lead}</p> : null}
           <p className="feature-description">{description}</p>
           <div className="feature-meta">
-            <div className="meta-item">
+            <div className="meta-item meta-item-before">
               <span className="meta-label">Replaces</span>
               <code className="meta-value">{before}</code>
             </div>
-            <div className="meta-item">
+            <div className="meta-item meta-item-after">
               <span className="meta-label">Uses</span>
               <code className="meta-value">{after}</code>
             </div>
@@ -57,12 +61,13 @@ export function FeatureTemplate({
         </div>
       </header>
 
-      {/* Before / After Comparison */}
+      {/* Before / After Comparison — DOM stays Before then After for desktop.
+          Mobile reorders the After panel first via CSS order. */}
       <section className="comparison-section section">
         <div className="container">
           <div className="comparison-grid">
             {/* Before */}
-            <div className="comparison-panel">
+            <div className="comparison-panel comparison-panel-before">
               <h2 className="comparison-heading">
                 <span className="badge">Before</span>
                 {before}
@@ -78,18 +83,11 @@ export function FeatureTemplate({
                   <p>TODO: Live demo of {before} implementation</p>
                 </div>
               )}
-              {beforeCode && (
-                <div className="code-container">
-                  <div className="code-label">Code</div>
-                  <pre>
-                    <code>{beforeCode}</code>
-                  </pre>
-                </div>
-              )}
+              {beforeCode && <CodeBlock code={beforeCode} />}
             </div>
 
             {/* After */}
-            <div className="comparison-panel comparison-panel-highlight">
+            <div className="comparison-panel comparison-panel-highlight comparison-panel-after">
               <h2 className="comparison-heading">
                 <span className="badge badge-accent">After</span>
                 {after}
@@ -105,14 +103,7 @@ export function FeatureTemplate({
                   <p>TODO: Live demo of CSS-only implementation using {after}</p>
                 </div>
               )}
-              {afterCode && (
-                <div className="code-container">
-                  <div className="code-label">Code</div>
-                  <pre>
-                    <code>{afterCode}</code>
-                  </pre>
-                </div>
-              )}
+              {afterCode && <CodeBlock code={afterCode} />}
             </div>
           </div>
         </div>
