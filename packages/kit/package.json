@@ -1,6 +1,7 @@
 {
   "name": "css-only-kit",
   "version": "0.1.0",
+  "license": "MIT",
   "description": "React components with CSS-only behavior, no JavaScript required",
   "type": "module",
   "main": "./dist/index.js",
