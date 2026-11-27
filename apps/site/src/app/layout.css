@@ -63,7 +63,7 @@
    * Breakpoint is below the width where the desktop header starts to overflow
    * (~570px with the longer "0 KB component JS" badge).
    */
-  @media (max-width: 40rem) {
+  @media (width <= 40rem) {
     .site-header {
       padding-block: var(--space-sm);
     }
@@ -75,8 +75,7 @@
     .nav {
       flex-wrap: wrap;
       align-items: center;
-      column-gap: var(--space-sm);
-      row-gap: var(--space-xs);
+      gap: var(--space-xs) var(--space-sm);
     }
 
     .logo {
@@ -135,7 +134,7 @@
 /* Badge lives in @layer components (globals.css), which wins over layout.
    Keep header-badge tweaks in the same layer so they apply. */
 @layer components {
-  @media (max-width: 40rem) {
+  @media (width <= 40rem) {
     .site-header .logo .badge {
       flex-shrink: 0;
       white-space: nowrap;
