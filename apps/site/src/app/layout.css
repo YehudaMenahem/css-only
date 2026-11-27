@@ -61,7 +61,7 @@
    * Mobile: keep the logo + badge on one unbroken row, move nav links
    * onto a second row so nothing overflows. Desktop rules above are unchanged.
    * Breakpoint is below the width where the desktop header starts to overflow
-   * (~570px with the longer "0 KB component JS" badge).
+   * (~590px with the "Zero-JS components" badge).
    */
   @media (width <= 40rem) {
     .site-header {
