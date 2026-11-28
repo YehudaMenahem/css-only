@@ -1,12 +1,19 @@
 @layer components {
   /* Hero section */
   .hero {
-    padding-block: var(--space-3xl);
+    padding-block: var(--space-xl) var(--space-3xl);
   }
 
   .hero-content {
     text-align: center;
     margin-inline: auto;
+  }
+
+  .hero-blob {
+    width: clamp(11.25rem, 28vw, 20rem);
+    aspect-ratio: 1;
+    margin-inline: auto;
+    margin-block-end: -1.5rem;
   }
 
   .hero-title {

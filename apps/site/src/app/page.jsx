@@ -1,5 +1,6 @@
 import { Modal } from 'css-only-kit'
 import 'css-only-kit/Modal.css'
+import HeroBlob from '@/components/HeroBlob'
 import './page.css'
 
 /**
@@ -63,6 +64,9 @@ export default function HomePage() {
       <section className="hero section">
         <div className="container">
           <div className="hero-content content-narrow">
+            <div className="hero-blob">
+              <HeroBlob />
+            </div>
             <h1 className="hero-title">
               You don&apos;t need a new project.
               <br />

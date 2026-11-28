@@ -5,6 +5,20 @@ test('home page loads', async ({ page }) => {
   await expect(page).toHaveTitle(/CSS-Only Showcase/)
 })
 
+test('homepage hero shows a chrome blob canvas without console errors', async ({ page }) => {
+  const errors = []
+  page.on('console', (message) => {
+    if (message.type() === 'error') errors.push(message.text())
+  })
+  page.on('pageerror', (error) => {
+    errors.push(error.message)
+  })
+
+  await page.goto('/')
+  await expect(page.locator('.hero canvas')).toBeVisible()
+  expect(errors).toEqual([])
+})
+
 test('feature page code blocks collapse on mobile and copy', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 })
   await page.goto('/features/invoker-commands')
