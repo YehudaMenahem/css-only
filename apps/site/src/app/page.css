@@ -101,7 +101,7 @@
   .feature-card:hover {
     border-color: var(--color-accent);
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgb(255 51 102 / 10%);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--color-accent) 10%, transparent);
   }
 
   .feature-title {

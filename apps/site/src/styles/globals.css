@@ -38,17 +38,17 @@
 
 @layer tokens {
   :root {
-    /* Colors - Dark editorial palette */
-    --color-bg: #0a0a0a;
-    --color-surface: #111;
-    --color-surface-elevated: #1a1a1a;
+    /* Colors - Deep navy palette with a sky-blue accent */
+    --color-bg: #070d1a;
+    --color-surface: #0d1729;
+    --color-surface-elevated: #14213a;
     --color-text: #fff;
-    --color-text-dim: #a0a0a0;
-    --color-text-dimmer: #666;
-    --color-accent: #f36;
-    --color-accent-dim: #cc2952;
-    --color-border: #222;
-    --color-code-bg: #0d0d0d;
+    --color-text-dim: #9aa8bd;
+    --color-text-dimmer: #64738b;
+    --color-accent: #6cc4ff;
+    --color-accent-dim: #3d9ae0;
+    --color-border: #1d2b45;
+    --color-code-bg: #091222;
 
     /* Typography */
     --font-display: var(--font-geist-sans);
