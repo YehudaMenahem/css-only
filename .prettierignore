@@ -3,3 +3,6 @@ node_modules
 dist
 out
 pnpm-lock.yaml
+
+# Vendored decorative shader. Kept byte-for-byte; do not reformat.
+apps/site/src/components/ChromeBlob.jsx
