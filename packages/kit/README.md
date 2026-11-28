@@ -155,7 +155,7 @@ All kit components use CSS custom properties for theming. Override them in your 
     --modal-backdrop: rgba(0, 0, 0, 0.9);
     --modal-bg: #1a1a1a;
     --modal-text: #ffffff;
-    --modal-accent: #ff3366;
+    --modal-accent: #6cc4ff;
     --modal-padding: 2rem;
     --modal-radius: 0.5rem;
   }

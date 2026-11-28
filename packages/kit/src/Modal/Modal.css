@@ -5,11 +5,11 @@
 
 @layer kit.tokens {
   :root {
-    --modal-backdrop: rgba(8, 8, 10, 0.72);
-    --modal-bg: color-mix(in srgb, #1a1a1a 78%, transparent);
+    --modal-backdrop: rgba(4, 8, 16, 0.72);
+    --modal-bg: color-mix(in srgb, #14213a 78%, transparent);
     --modal-text: #ffffff;
     --modal-border: rgba(255, 255, 255, 0.14);
-    --modal-close-hover: #f36;
+    --modal-close-hover: #6cc4ff;
     --modal-padding: 2.5rem;
     --modal-radius: 1.5rem;
     --modal-radius-squircle: 2.75rem;
@@ -17,8 +17,8 @@
     /* Single blur, on ::backdrop only. A second blur on the panel is nearly invisible. */
     --modal-blur: 8px;
     --modal-glow:
-      0 0 0 1px rgba(255, 51, 102, 0.18), 0 24px 80px rgba(0, 0, 0, 0.45),
-      0 0 80px rgba(255, 51, 102, 0.12);
+      0 0 0 1px rgba(108, 196, 255, 0.18), 0 24px 80px rgba(0, 0, 0, 0.45),
+      0 0 80px rgba(108, 196, 255, 0.12);
     --modal-chip-radius: 0.6rem;
     --modal-chip-radius-squircle: 0.85rem;
   }
@@ -51,7 +51,7 @@
     padding: 0;
     border: 1px solid var(--modal-border);
     border-radius: var(--modal-radius);
-    background: #1a1a1a;
+    background: #14213a;
     background: var(--modal-bg);
     color: var(--modal-text);
     box-shadow: var(--modal-glow);
